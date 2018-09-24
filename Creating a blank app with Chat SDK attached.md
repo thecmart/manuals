@@ -22,9 +22,9 @@ classpath 'com.google.gms:google-services:4.0.1'
 8. Add the following code to the build.gradle file, in the section  `dependencies`:
 
 ```
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.0.26'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.0.26'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.0.26'
+implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.26'
+implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.1.26'
+implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.1.26'
 implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.1.26'
 implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.26'
 implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.26'
@@ -185,15 +185,24 @@ Congratulations! 🎉🎉 You've just turned your app into a fully featured inst
 Add the following to your app level `build.gradle` file:
 
 ```
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.0.26'
+implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.26'
 ```
 
+Move your mouse over these lines slowly, if android studio tells you that these versions are outdated, enter the number of the latest version in the appropriate line in place of the number of the latest version.
+
 ##### Enable the module
+
+Add this in the list of import lines at the top of the AndroidApp (or equivalent) class.
+
+```
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.PhoneAuthProvider;
+```
 
 Add the following to the end of your `onCreate` method in your main class (previously termed "AndroidApp"):
 
 ```
-FirebaseUIModule.activate(context, AuthUI.EMAIL_PROVIDER, AuthUI.PHONE_VERIFICATION_PROVIDER);
+FirebaseUIModule.activate(context, EmailAuthProvider.PROVIDER_ID, PhoneAuthProvider.PROVIDER_ID);
 ```
 
 Add this to your `AndroidManifest.xml` in place of whichever sign in activity you were previously using.
@@ -208,6 +217,10 @@ Add this to your `AndroidManifest.xml` in place of whichever sign in activity yo
 ```
 
 You can provide a list of providers as outlined in the [Firebase documentation](https://github.com/firebase/FirebaseUI-Android/blob/master/auth/README.md#sign-in-examples). 
+
+###VERY IMPORTANT!
+
+**Make sure that when you are asked by google if you wish to save the password, you select the option for it to save the password! Otherwise the firebase UI Login will not work!**
 
 > **Note**
 > You will need to remove the `com.facebook.sdk.ApplicationId` meta data from the app manifest or you will get a Gradle build error. 

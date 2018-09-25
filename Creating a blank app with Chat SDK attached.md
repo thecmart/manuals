@@ -103,6 +103,7 @@ public class AndroidApp extends Application {
 14. At this point, you can decide which activity should be the first to launch when you launch your application. As you have not yet created any activities, this should then be the Chat SDK login activity by default. Currently, your `Android Manifest.xml` file should look something like this: 
 
     ```
+    <?xml version="1.0" encoding="utf-8"?>
     <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="PACKAGE NAME">
     

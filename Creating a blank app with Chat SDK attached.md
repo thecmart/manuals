@@ -110,14 +110,14 @@ public class AndroidApp extends Application {
         Context context = getApplicationContext();
 
 // Create a new configuration
-        Configuration.Builder builder = new Configuration.Builder(context);
+        Configuration.Builder config = new Configuration.Builder(context);
 
 // Perform any configuration steps (optional)
-        builder.firebaseRootPath("prod");
+        config.firebaseRootPath("prod");
 
 // Initialize the Chat SDK
         try {
-            ChatSDK.initialize(builder.build(), new BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
+            ChatSDK.initialize(config.build(), new BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
         }
         catch (ChatSDKException e) {
         }
@@ -222,19 +222,17 @@ builder.firebaseCloudMessagingServerKey("YOUR SERVER KEY");
 
 30. Go to the [Google Places API](https://developers.google.com/places/) page, click **Get Started**, then click **Places**, and then click **Continue**.
 
-31. After this you select your Project from the drop down lit and click **Next**. Then **QUICKLY** click on **Create a billing Account** when the dialog box pops up. If you miss it, simply repeat steps 26 and 27. In order to do this you will need a billing account. If you want to do that, then continue, otherwise disable location messages by placing this text into the AndroidApp's `Oncreate` method: ```builder.locationMessagesEnabled(false)``` and skip to the conclusion, otherwise follow the next steps.
+31. After this you select your Project from the drop down lit and click **Next**. Then **QUICKLY** click on **Create a billing Account** when the dialog box pops up. If you miss it, simply repeat steps 30 and 31. In order to do this you will need a billing account. If you want to do that, then continue, otherwise disable location messages by placing this text into the AndroidApp's `Oncreate` method: ```config.locationMessagesEnabled(false)``` and skip to the conclusion, otherwise follow the next steps.
 
 32. Select your country, and accept the Terms of Service, then click **Agree and Continue**. Click **Set up payments profile** and enter your billing information. Click **Start my free trial**, then click **Next** to enable to google maps platform. Copy your API key and click **Done**.
 
-33. Although you need to setup billing, Google give you 200 USD per month for free. So you can load 10 million free location messages for free per month
+33. Although you need to setup billing, Google give you 200 USD per month for free. So you can load 10 million free location messages for free per month.
 
-34. Now click on **SECURE CREDENTIALS** ** NEED TO CHECK THIS OUT!**
+34. Go back to Android Studio, Add this line to the `oncreate` method of the AndroidApp: `config.googleMaps("YOUR GOOGLE PLACES API KEY");`
 
-35. Go back to Android Studio, Add this line to the `oncreate` method of the AndroidApp: `config.googleMaps("YOUR COPIED API KEY");`
+35. Now go the `AndroidManifest.xml` file and add this line directly above `</application>`line in the file: `<meta-data android:name="com.google.android.geo.API_KEY" android:value="YOUR COPIED GOOGLE PLACES API KEY"/>`
 
-36. Now go the `AndroidManifest.xml` file and add this line directly above `</application>`line in the file: `<meta-data android:name="com.google.android.geo.API_KEY" android:value="YOUR COPIED API KEY"/>`
-
-37. Now go to [Google Static Maps API](https://developers.google.com/maps/documentation/static-maps/) and click on **Get Started**. Click on **Maps** and click **Continue**. Select the appropriate project and click **Next**, then click **Done**. Do not bother copying the API Key.
+36. Now go to [Google Static Maps API](https://developers.google.com/maps/documentation/static-maps/) and click on **Get Started**. Click on **Maps** and click **Continue**. Select the appropriate project and click **Next**, then click **Done**. Do not bother copying the API Key.
 
 ### Conclusion
 

@@ -39,12 +39,12 @@ classpath 'com.google.gms:google-services:4.0.1'
 9. Add the following code to the build.gradle file, in the section  `dependencies`:
 
 ```
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.26'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.1.26'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.1.26'
-implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.1.26'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.26'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.26'
+implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
+implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.1.35'
+implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.1.35'
+implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.1.35'
+implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
+implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.35'
 ```
 
 10. Move your mouse over these lines slowly, if android studio tells you that these versions are outdated, enter the number of the latest version in the appropriate line in place of the number of the latest version.
@@ -206,12 +206,12 @@ public class AndroidApp extends Application {
 25. Now go back to Android Studio. Add the following to the setup code in the AndroidApp's `onCreate` method.
 
 ```
-builder.firebaseCloudMessagingServerKey("YOUR SERVER KEY");
+config.firebaseCloudMessagingServerKey("YOUR SERVER KEY");
 ```
 
 26. Go back to your [Firebase Console](https://console.firebase.google.com/) , click on your app, Click on **Storage** at the left, click on **Get Started**, then click on **Got it**.
 
-27. Go back to your [Firebase Console](https://console.firebase.google.com/) , click on your app, click on **Database**. Next to the word "Database" On the drop down menu click on **Real Time Database**. Start in locked mode and click **Enable**. Click the **Rules** tab. Delete everything in the box, then go to this [rules.json](https://github.com/chat-sdk/chat-sdk-ios/blob/master/rules.json) file, copy everything in the box (approximately 355 lines), and paste it into the box in the firebase console.
+27. Go back to your [Firebase Console](https://console.firebase.google.com/) , click on your app, click on **Database**. Scroll down to where it says **Realtime Database** and click on **Create database**.Start in locked mode and click **Enable**. Click the **Rules** tab. Delete everything in the box, then go to this [rules.json](https://github.com/chat-sdk/chat-sdk-ios/blob/master/rules.json) file, copy everything in the box (approximately 355 lines), and paste it into the box in the firebase console.
     Click on **Publish**.
 
 28. Now click on the button called **Sync Project with Gradle Files**. It should be at the top left hand corner, 5 buttons from the google account button. When the gradle sync completes, your App is ready to go!
@@ -232,8 +232,18 @@ builder.firebaseCloudMessagingServerKey("YOUR SERVER KEY");
 
 35. Now go the `AndroidManifest.xml` file and add this line directly above `</application>`line in the file: `<meta-data android:name="com.google.android.geo.API_KEY" android:value="YOUR COPIED GOOGLE PLACES API KEY"/>`
 
-36. Now go to [Google Static Maps API](https://developers.google.com/maps/documentation/static-maps/) and click on **Get Started**. Click on **Maps** and click **Continue**. Select the appropriate project and click **Next**, then click **Done**. Do not bother copying the API Key.
+36. Now go to [Google Static Maps API](https://developers.google.com/maps/documentation/static-maps/) and click on **Get Started**. Click on **Maps** and click **Continue**. Select the appropriate project and click **Next**, copy the API Key then click **Done**. Save this API Key in some other file as you may need it later.
 
 ### Conclusion
 
 Congratulations! 🎉🎉 You've just turned your app into a fully featured instant messenger! Keep reading below to learn how to further customize the Chat SDK  as well as add various other modules as needed.
+
+
+
+```
+config.googleMaps("AIzaSyCo9UF05TRK7zVaKidLs3u0Zdsn3eThrgk");
+```
+
+```
+<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCo9UF05TRK7zVaKidLs3u0Zdsn3eThrgk"/>
+```

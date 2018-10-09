@@ -116,14 +116,14 @@
 
 16. Go to the **Project Level** `build.gradle` file, then find the section of `repositories` in `allprojects`, and add the following code inside of it:
 
-```
+   ```
 maven { url "http://dl.bintray.com/chat-sdk/chat-sdk-android" }
 maven { url "https://maven.google.com" }
 maven { url "https://jitpack.io" }
-```
+   ```
 
-The result should look like this:
-```
+​       The result should look like this:
+   ```
 allprojects {
     repositories {
         google()
@@ -132,33 +132,33 @@ allprojects {
         maven { url "https://maven.google.com" }
         maven { url "https://jitpack.io" }
     }
-}
-```
+   }
+   ```
 
 26. Add the following code to the **App Level** build.gradle file, in the section  `dependencies`:
 
-```
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.1.35'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.1.35'
-implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.1.35'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.35'
-```
+   ```
+   implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
+   implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.1.35'
+   implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.1.35'
+   implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.1.35'
+   implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
+   implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.35'
+   ```
 
 27. Move your mouse over these lines slowly, if android studio tells you that these versions are outdated, enter the number of the latest version in the appropriate line in place of the number of the latest version.
 
 28. Find the `android {    }` section of the file. Add this code inside of it, but not inside any of the other items inside of it:
 
-```
-compileOptions {
+   ```
+   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
-}
-```
-It should then look like this :
-```android {
-android {
+   }
+   ```
+   It should then look like this :
+   ```android {
+   android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "domain.testing.testapp2"
@@ -178,72 +178,72 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-}
-```
-12. Add this to the very end of the app level `build.gradle` file:
+   }
+   ```
+29. Add this to the very end of the app level `build.gradle` file:
 
-```
-apply plugin: 'com.google.gms.google-services'
-```
+   ```
+   apply plugin: 'com.google.gms.google-services'
+   ```
 
-13. Now you need to create a new class. Under the **app** folder on the right, click on **src**, then on "main, and then on **java**. Under **java** there should  be a folder with the package name. Right click on it, then go to **new** and click on **Java Class**. Call the class "AndroidApp" and under the label Superclass, write "Application". In the body of the class, erase all text **except for the first line.** This would normally be `package PACKAGE NAME;`and copy this code into it:
+30. Now you need to create a new class. Under the **app** folder on the right, click on **src**, then on "main, and then on **java**. Under **java** there should  be a folder with the package name. Right click on it, then go to **new** and click on **Java Class**. Call the class "AndroidApp" and under the label Superclass, write "Application". In the body of the class, erase all text **except for the first line.** This would normally be `package PACKAGE NAME;`and copy this code into it:
 
-```
-import android.app.Application;
-import android.content.Context;
-
-import co.chatsdk.core.error.ChatSDKException;
-import co.chatsdk.core.session.ChatSDK;
-import co.chatsdk.core.session.Configuration;
-import co.chatsdk.firebase.FirebaseNetworkAdapter;
-import co.chatsdk.firebase.file_storage.FirebaseFileStorageModule;
-import co.chatsdk.firebase.push.FirebasePushModule;
-import co.chatsdk.ui.manager.BaseInterfaceAdapter;
-
-public class AndroidApp extends Application {
-
+   ```
+   import android.app.Application;
+   import android.content.Context;
+   
+   import co.chatsdk.core.error.ChatSDKException;
+   import co.chatsdk.core.session.ChatSDK;
+   import co.chatsdk.core.session.Configuration;
+   import co.chatsdk.firebase.FirebaseNetworkAdapter;
+   import co.chatsdk.firebase.file_storage.FirebaseFileStorageModule;
+   import co.chatsdk.firebase.push.FirebasePushModule;
+   import co.chatsdk.ui.manager.BaseInterfaceAdapter;
+   
+   public class AndroidApp extends Application {
+   
     @Override
     public void onCreate() {
         super.onCreate();
-    
+   
         Context context = getApplicationContext();
-
-// Create a new configuration
-        Configuration.Builder config = new Configuration.Builder(context);
-
-// Perform any configuration steps (optional)
-        config.firebaseRootPath("prod");
-
-// Initialize the Chat SDK
-        try {
-            ChatSDK.initialize(config.build(), new BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
-        }
-        catch (ChatSDKException e) {
-        }
-
-// File storage is needed for profile image upload and image messages
-        FirebaseFileStorageModule.activate();
-        FirebasePushModule.activateForFirebase();
-
-// Activate any other modules you need.
-// ...
-
+   
+   // Create a new configuration
+           Configuration.Builder config = new    Configuration.Builder(context);
+   
+   // Perform any configuration steps (optional)
+           config.firebaseRootPath("prod");
+   
+   // Initialize the Chat SDK
+           try {
+               ChatSDK.initialize(config.build(), new    BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
+           }
+           catch (ChatSDKException e) {
+           }
+   
+   // File storage is needed for profile image upload and image messages
+           FirebaseFileStorageModule.activate();
+           FirebasePushModule.activateForFirebase();
+   
+   // Activate any other modules you need.
+   // ...
+   
     }
-}
+   }
+   
+   ```
 
-```
+31. If you have this class a different name than AndroidApp, you need to change the name of it in the line `public class AndroidApp extends Application` to whatever the name of the app is.
 
-14. If you have this class a different name than AndroidApp, you need to change the name of it in the line `public class AndroidApp extends Application` to whatever the name of the app is.
+32. Open your `AndroidManifest.xml` file, it should be in the "main" folder. Add this code to the `<application` section: `android:name=".AndroidApp"`. If you gave the AndroidApp class a different name, enter that name instead.
 
-15. Open your `AndroidManifest.xml` file, it should be in the "main" folder. Add this code to the `<application` section: `android:name=".AndroidApp"`. If you gave the AndroidApp class a different name, enter that name instead.
+33. Currently, your `Android Manifest.xml` file should look something like this: 
 
-16. Currently, your `Android Manifest.xml` file should look something like this: 
-
-```
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="domain.testing.totalintegrationtest">
-
+   ```
+   <?xml version="1.0" encoding="utf-8"?>
+   <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+       package="domain.testing.totalintegrationtest">
+   
     <application
         android:name=".AndroidApp"
         android:allowBackup="true"
@@ -255,20 +255,18 @@ public class AndroidApp extends Application {
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+    
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
-</manifest>
-```
+   ```
 
 17. Click the Gradle Sync button again.
 
 18. Now go to your `MainActivity` Class and enter this code outside of the `onCreate` method:
 
-    ```
+   ```
         @Override
         protected void onResume() {
             super.onResume();
@@ -367,7 +365,7 @@ public class AndroidApp extends Application {
                 ChatSDK.logError(e);
             }
         }
-    ```
+   ```
 
 19. Add this line just below the ```public static final int RC_SIGN_IN = 900;``` line at the toip of the class: ```protected ProgressDialog progressDialog;```.
 
@@ -377,9 +375,9 @@ public class AndroidApp extends Application {
 
 2. Now go back to Android Studio. Add the following to the setup code in the AndroidApp's `onCreate` method.
 
-```
+   ```
 config.firebaseCloudMessagingServerKey("YOUR SERVER KEY");
-```
+   ```
 
 26. Go back to your [Firebase Console](https://console.firebase.google.com/) , click on your app, Click on **Storage** at the left, click on **Get Started**, then click on **Got it**.
 

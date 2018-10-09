@@ -3,89 +3,88 @@
 
 1. In the **Project Level** `build.gradle` file, Find the section of `repositories` in `allprojects`, and add the following code inside of it:
 
-```
+   ```
     maven { url "http://dl.bintray.com/chat-sdk/chat-sdk-android" }
     maven { url "https://maven.google.com" }
     maven { url "https://jitpack.io" }
-```
+   ```
 
-3. Then add this to your `dependencies` area of the same file, if it is not already there:
+3. Then add this to your `dependencies` area of the same file, if it is not already there:  
 
-```
-classpath 'com.google.gms:google-services:4.0.1'
-```
+    ```
+    classpath 'com.google.gms:google-services:4.0.1'
+    ```
 
 4. Add the following code to the **App Level** build.gradle file, in the section  `dependencies`:
 
-```
+   ```
 implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
 implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.1.35'
 implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.1.35'
 implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.1.35'
 implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
 implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.35'
-```
+   ```
 
 5. Find the `android {    }` section of the file. Add this code inside of it, but not inside any of the other items inside of it:
 
-```
+   ```
 compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
 }
-```
+   ```
 
 6. Add this to the very end of the **App Level** `build.gradle` file, if you haven't already:
 
-```
+   ```
 apply plugin: 'com.google.gms.google-services'
-```
+   ```
 
-7. Now you need to create a new class. Call the class "AndroidApp", or any other name you desire, and under the label Superclass, write "Application". In the body of the class, erase all text **except for the package line at the top.** Then copy this code into it:
+6. Now you need to create a new class. Call the class "AndroidApp", or any other name you desire, and under the label Superclass, write "Application". In the body of the class, erase all text **except for the package line at the top.** Then copy this code into it:
 
-```
-import android.app.Application;
-import android.content.Context;
+   ```
+   import android.app.Application;
+   import android.content.Context;
+   import co.chatsdk.core.error.ChatSDKException;
+   import co.chatsdk.core.session.ChatSDK;
+   import co.chatsdk.core.session.Configuration;
+   import co.chatsdk.firebase.FirebaseNetworkAdapter;
+   import co.chatsdk.firebase.file_storage.FirebaseFileStorageModule;
+   import co.chatsdk.firebase.push.FirebasePushModule;
+   import co.chatsdk.ui.manager.BaseInterfaceAdapter;
 
-import co.chatsdk.core.error.ChatSDKException;
-import co.chatsdk.core.session.ChatSDK;
-import co.chatsdk.core.session.Configuration;
-import co.chatsdk.firebase.FirebaseNetworkAdapter;
-import co.chatsdk.firebase.file_storage.FirebaseFileStorageModule;
-import co.chatsdk.firebase.push.FirebasePushModule;
-import co.chatsdk.ui.manager.BaseInterfaceAdapter;
-
-public class AndroidApp extends Application {
+   public class AndroidApp extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
-
+    
         Context context = getApplicationContext();
 
-// Create a new configuration
-        Configuration.Builder builder = new Configuration.Builder(context);
+   // Create a new configuration
+        Configuration.Builder builder = new         Configuration.Builder(context);
 
-// Perform any configuration steps (optional)
+   // Perform any configuration steps (optional)
         builder.firebaseRootPath("prod");
 
-// Initialize the Chat SDK
+   // Initialize the Chat SDK
         try {
-            ChatSDK.initialize(builder.build(), new BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
+            ChatSDK.initialize(builder.build(), new    BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
         }
         catch (ChatSDKException e) {
         }
 
-// File storage is needed for profile image upload and image messages
+   // File storage is needed for profile image upload and image messages
         FirebaseFileStorageModule.activate();
         FirebasePushModule.activateForFirebase();
 
-// Activate any other modules you need.
-// ...
+   // Activate any other modules you need.
+   // ...
 
     }
-}
-```
+   }
+   ```
 
 8. Open your `AndroidManifest.xml` file, and add this line to the`<application` section: `android:name=".AndroidApp"`. If you gave the AndroidApp class a different name, enter that name instead.
 
@@ -105,14 +104,14 @@ If you would like to launch Chat SDK from your app, run this line: ```ChatSDK.ui
 
 If you wish to log in using the Chat SDK Login Screen, add this code to your `AndroidManifest.xml` file:
 
-```
+   ```
 <activity android:name="co.chatsdk.ui.login.LoginActivity">
    <intent-filter>
-       <action android:name="android.intent.action.MAIN" />
-       <category android:name="android.intent.category.LAUNCHER" />
+​       <action android:name="android.intent.action.MAIN" />
+​       <category android:name="android.intent.category.LAUNCHER" />
    </intent-filter>
 </activity>
-```
+   ```
    Alternatively, the Chat SDK login screen can be triggered by this line:
 
        InterfaceManager.shared().a.startLoginActivity(context, true);
@@ -130,21 +129,21 @@ FirebaseUIModule.activate(context, EmailAuthProvider.PROVIDER_ID, PhoneAuthProvi
 
 Add this in the list of import lines at the top of the AndroidApp (or equivalent) class.
 
-```
+   ```
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.PhoneAuthProvider;
-```
+   ```
 
 Add this to your `AndroidManifest.xml` in place of whichever sign in activity you were previously using.
 
-```
+   ```
 <activity android:name="co.chatsdk.firebase.ui.SplashScreenActivity">
-    <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
-    </intent-filter>
+​    <intent-filter>
+​        <action android:name="android.intent.action.MAIN" />
+​        <category android:name="android.intent.category.LAUNCHER" />
+​    </intent-filter>
 </activity>
-```
+   ```
 
 You can provide a list of providers as outlined in the [Firebase documentation](https://github.com/firebase/FirebaseUI-Android/blob/master/auth/README.md#sign-in-examples). 
 
@@ -157,9 +156,9 @@ Add the following to the end of your `onCreate` method in your main class (previ
 
    ```
   ChatSDK.auth().authenticateWithCachedToken().subscribe(() -> {
-      // Success
+​      // Success
   }, throwable -> {
-      // Error
+​      // Error
   });
    ```
 ####Firebase
@@ -170,9 +169,9 @@ Add the following to the end of your `onCreate` method in your main class (previ
 
 12. Add the following to the end of your `onCreate` method in your main class (previously termed "AndroidApp"):
 
-```
+   ```
 builder.firebaseCloudMessagingServerKey("YOUR FIREBASE CLOUD MESSAGING KEY");
-```
+   ```
 
 13. Now click on the button called "Sync Project with Gradle Files". It should be at the top left hand corner, 5 buttons from the google account button. When the gradle sync completes, your App is ready to go!
 
@@ -188,23 +187,23 @@ In case you would like to have the option of logging in to your app with Faceboo
 
 *Gradle*
 
-```
+   ```
 implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-social-login:4.1.35'
-```
+   ```
 
 [*Manual Import*](https://github.com/chat-sdk/chat-sdk-android#adding-modules-manually)
 
-```
+   ```
 compile project(path: ':chat-sdk-firebase-social-login')
-```
+   ```
 
 ##### Enable the module
 
 In your main class `onCreate` method add:
 
-```
+   ```
 FirebaseSocialLoginModule.activate(getApplicationContext());
-```
+   ```
 
 Now find the heading of whichever login option(s) you would like and follow the instructions.
 
@@ -298,7 +297,7 @@ Now find the heading of whichever login option(s) you would like and follow the 
 
    ```
    <string name="google_web_client_id">[CLIENT ID]</string>
-   
+
    ```
 
 Social login can also be enabled or disabled by changing the Chat SDK [configuration](https://github.com/chat-sdk/chat-sdk-android#configuration).
@@ -373,7 +372,7 @@ FirebaseUIModule.activate(context, EmailAuthProvider.PROVIDER_ID, PhoneAuthProvi
 Add this to your AndroidManifest.xml in place of whichever sign in activity you were previously using.
 
 
-```
+   ```
 <activity
 android:name="co.chatsdk.firebase.ui.FirebaseUIActivity">
   <intent-filter>
@@ -383,7 +382,8 @@ android:name="android.intent.action.MAIN" />
 android:name="android.intent.category.LAUNCHER" />
   </intent-filter>
 </activity>
-```
+
+   ```
 
 You can provide a list of providers as outlined in the [Firebase documentation](https://github.com/firebase/FirebaseUI-Android/blob/master/auth/README.md#sign-in-examples). 
 
@@ -392,3 +392,7 @@ You can provide a list of providers as outlined in the [Firebase documentation](
 **Make sure that when you are asked by google if you wish to save the password, you select the option for it to save the password! Otherwise the firebase UI Login will not work!**
 
 **Note** You will need to remove the `com.facebook.sdk.ApplicationId` meta data from the app manifest or you will get a Gradle build error. 
+
+   ```
+
+   ```

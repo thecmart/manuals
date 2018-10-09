@@ -237,13 +237,3 @@ config.firebaseCloudMessagingServerKey("YOUR SERVER KEY");
 ### Conclusion
 
 Congratulations! 🎉🎉 You've just turned your app into a fully featured instant messenger! Keep reading below to learn how to further customize the Chat SDK  as well as add various other modules as needed.
-
-
-
-```
-config.googleMaps("AIzaSyCo9UF05TRK7zVaKidLs3u0Zdsn3eThrgk");
-```
-
-```
-<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCo9UF05TRK7zVaKidLs3u0Zdsn3eThrgk"/>
-```

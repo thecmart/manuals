@@ -108,7 +108,7 @@
 
 12. Click the **Gradle Sync** Button again.
 
-13. At this point you must decide whether you would like to integrate Chat SDK into the App or not. If you wish to do so, then skip ahead to section **25**. If not, then keep following the next 2 steps, and then you are done.
+13. At this point you must decide whether you would like to integrate Chat SDK into the App or not. If you wish to do so, then skip ahead to step **25**. If not, then keep following the next 2 steps, and then you are done.
 
 14. Run the app and click on the sign in button when the app launches. Select your preferred login account when the option **Continue with** comes up. When you click on **Save**. When the smart lock option comes up, make sure you click **SAVE PASSWORD, or else it will not work!**
 

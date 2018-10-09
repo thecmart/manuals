@@ -1,8 +1,7 @@
 ## Adding Chat SDK to an existing Application using Firebase
-###### Quick start guide - this guide is written assuming that you already have a functioning Application that you would like to integrate Chat SDK into, and that you have a basic knowledge of how Android Studio works. If this is not the case, please view the new project manual here NEED LINK!
+###### Quick start guide - this guide is written assuming that you already have a functioning Application that you would like to integrate Chat SDK into, that you have a basic knowledge of how Android Studio works, and that the application is already connected to firebase. If this is not the case, please view the new project manual here NEED LINK!
 
-1. Go to the top righthand button which should be the blue google person, and use it to sign in to google with your google account. If you do not have a google account, you can use the button to create one. Then go to Tools -> Firebase. Go to the tab on the right, click on analytics, click on  "Log an Analytics event", and then clock "Connect to Firebase" then click on "Connect to firebase". If there are errors, click Connect to firebase again and click sync, until the button turns into the word "Connected".
-2. In the top level build gradle file, Find the section of `repositories` in `allprojects`, and add the following code inside of it:
+1. In the **Project Level** `build.gradle` file, Find the section of `repositories` in `allprojects`, and add the following code inside of it:
 
 ```
     maven { url "http://dl.bintray.com/chat-sdk/chat-sdk-android" }
@@ -10,23 +9,21 @@
     maven { url "https://jitpack.io" }
 ```
 
-3. Then add this to your `dependencies` area of the same file:
+3. Then add this to your `dependencies` area of the same file, if it is not already there:
 
 ```
 classpath 'com.google.gms:google-services:4.0.1'
 ```
 
-4. Add the following code to the app level build.gradle file, in the section  `dependencies`:
+4. Add the following code to the **App Level** build.gradle file, in the section  `dependencies`:
 
 ```
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.0.26'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.0.26'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.0.26'
-implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.1.26'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.26'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.26'
-implementation 'com.google.firebase:firebase-auth:16.0.3'
-implementation 'com.google.android.gms:play-services-auth:16.0.0'
+implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
+implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.1.35'
+implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.1.35'
+implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.1.35'
+implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
+implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.35'
 ```
 
 5. Find the `android {    }` section of the file. Add this code inside of it, but not inside any of the other items inside of it:
@@ -38,7 +35,7 @@ compileOptions {
 }
 ```
 
-6. Add this to the very end of the app level `build.gradle` file:
+6. Add this to the very end of the **App Level** `build.gradle` file, if you haven't already:
 
 ```
 apply plugin: 'com.google.gms.google-services'
@@ -93,14 +90,20 @@ public class AndroidApp extends Application {
 8. Open your `AndroidManifest.xml` file, and add this line to the`<application` section: `android:name=".AndroidApp"`. If you gave the AndroidApp class a different name, enter that name instead.
 
 9. Now, depending on the configuration of your project, there are three options to login with the Chat SDK, pick one of them and proceed with the instructions below:
-  A. **Login using Chat SDK Login Screen**
-  B. **Login using Firebase UI**
-  C. **Login using custom UI i.e. if you have an existing Firebase project**
+
+  A. **Running Chat SDK from your app when you are already logged in**                                                      B. **Login using Chat SDK Login Screen**
+  C. **Login using Firebase UI**
+  D. **Login using custom UI i.e. if you have an existing Firebase project**
 
   For the option of logging in with either Facebook, Twitter or Google, please see the section for this below.
 
+#### Run Chat SDK
+
+If you would like to launch Chat SDK from your app, run this line: ```ChatSDK.ui().startMainActivity```
+
 ####Login using Chat SDK Login Screen
-Add this code to your `AndroidManifest.xml` file:
+
+If you wish to log in using the Chat SDK Login Screen, add this code to your `AndroidManifest.xml` file:
 
 ```
 <activity android:name="co.chatsdk.ui.login.LoginActivity">
@@ -171,7 +174,7 @@ Add the following to the end of your `onCreate` method in your main class (previ
 builder.firebaseCloudMessagingServerKey("YOUR FIREBASE CLOUD MESSAGING KEY");
 ```
 
-1. Now click on the button called "Sync Project with Gradle Files". It should be at the top left hand corner, 5 buttons from the google account button. When the gradle sync completes, your App is ready to go!
+13. Now click on the button called "Sync Project with Gradle Files". It should be at the top left hand corner, 5 buttons from the google account button. When the gradle sync completes, your App is ready to go!
 
 ### Conclusion
 
@@ -369,20 +372,18 @@ FirebaseUIModule.activate(context, EmailAuthProvider.PROVIDER_ID, PhoneAuthProvi
 
 Add this to your AndroidManifest.xml in place of whichever sign in activity you were previously using.
 
+
+```
 <activity
 android:name="co.chatsdk.firebase.ui.FirebaseUIActivity">
-
   <intent-filter>
-
       <action
 android:name="android.intent.action.MAIN" />
-
       <category
 android:name="android.intent.category.LAUNCHER" />
-
   </intent-filter>
-
 </activity>
+```
 
 You can provide a list of providers as outlined in the [Firebase documentation](https://github.com/firebase/FirebaseUI-Android/blob/master/auth/README.md#sign-in-examples). 
 

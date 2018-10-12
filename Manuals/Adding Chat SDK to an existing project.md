@@ -100,7 +100,7 @@
 
 If you would like to launch Chat SDK from your app, run this line: ```ChatSDK.ui().startMainActivity```
 
-####Login using Chat SDK Login Screen
+#### Login using Chat SDK Login Screen
 
 If you wish to log in using the Chat SDK Login Screen, add this code to your `AndroidManifest.xml` file:
 
@@ -351,5 +351,3 @@ After you have purchased the module you will be provided with a link to the modu
    ```
 
    Replace ´ContactBook` with the name of the specific module you would like to activate.
-
-   ```

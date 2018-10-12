@@ -26,7 +26,8 @@
 
    ```
     <?xml version="1.0" encoding="utf-8"?>
-    <android.support.constraint.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
        xmlns:app="http://schemas.android.com/apk/res-auto"
        xmlns:tools="http://schemas.android.com/tools"
        android:layout_width="match_parent"
@@ -50,9 +51,9 @@
     </android.support.constraint.ConstraintLayout>
    ```
 
-2. Open the folder that says ```values```, open the ```strings.xml``` file and add this to the resources:    ```<string name="login_button_text">Login With Firebase UI</string>```
+11. Open the folder that says ```values```, open the ```strings.xml``` file and add this to the resources:    ```<string name="login_button_text">Login With Firebase UI</string>```
 
-3. Now you need to create a new class. Under the **app** folder on the right, click on **src**, then on "main, and then on **java**. Under **java** there should  be a folder with the package name. Then click on `MainActivity`. Now add this code underneath the first line that starts with `package`: 
+12. Now you need to create a new class. Under the **app** folder on the right, click on **src**, then on "main, and then on **java**. Under **java** there should  be a folder with the package name. Then click on `MainActivity`. Now add this code underneath the first line that starts with `package`: 
 
    ```
    import com.firebase.ui.auth.AuthUI;
@@ -61,21 +62,21 @@
    import com.google.firebase.FirebaseApp;
    ```
 
-4. Next, add this line below this line: `public class MainActivity extends AppCompatActivity {`: ```
+13. Next, add this line below this line: `public class MainActivity extends AppCompatActivity {`: ```
 
    ```
    Button signInButton;
    public static final int RC_SIGN_IN = 900;
    ```
 
-5. Then add these two lines inside of the `onCreate` method: 
+14. Then add these two lines inside of the `onCreate` method: 
 
    ```
    FirebaseApp.initializeApp(this);
    signInButton = (Button) findViewById(R.id.button);
    ```
 
-6. Now Add this outside of the `onCreate` method:
+15. Now Add this outside of the `onCreate` method:
 
    ```
    public void startAuthenticationActivity () {
@@ -96,25 +97,25 @@
    }
    ```
 
-7. Go to the very top right hand button (When you mouse over this button, it will say sign in to Google, and use it to sign in to Google with your Google account. If you do not have a Google account, you can use the button to create one.![Buttons](C:\Users\DELTA\Desktop\Chat SDK Integration Manuals\Buttons.png)
+16. Go to the very top right hand button (When you mouse over this button, it will say sign in to Google, and use it to sign in to Google with your Google account. If you do not have a Google account, you can use the button to create one.![Buttons](C:\Users\DELTA\Desktop\Chat SDK Integration Manuals\Buttons.png)
 
-8. Now click on the button called **Sync Project with Gradle Files**. It should be at the top right hand corner, 5 buttons from the google account button. Ignore any messages telling you that the build failed,
+17. Now click on the button called **Sync Project with Gradle Files**. It should be at the top right hand corner, 5 buttons from the google account button. Ignore any messages telling you that the build failed,
 
-9. Go to **Tools** -> **Firebase**. Go to the tab on the right, click on analytics, click on  **Log an Analytics event**, and then click **Connect to Firebase** then click on **Connect to firebase**. If there are errors, click **Connect to firebase** again and click **sync**, until the button turns into the word "Connected".
+18. Go to **Tools** -> **Firebase**. Go to the tab on the right, click on analytics, click on  **Log an Analytics event**, and then click **Connect to Firebase** then click on **Connect to firebase**. If there are errors, click **Connect to firebase** again and click **sync**, until the button turns into the word "Connected".
 
-10. Click the **Gradle Sync** Button again.
+19. Click the **Gradle Sync** Button again.
 
-11. Now you can go to to the [Firebase Console](https://console.firebase.google.com/)  in your web browser, and you should find your project. It should be a large white tile with the name of your app. Click on your project, then go to the firebase dashboard, and go to **Authentication** -> **Sign-In-Method**, and click on whichever sign in options you like. We recommend clicking only on the **Sign in with Email and Password** option, or further steps will become more complicated. Switch both Sign in switches to "On" and click **Save**.
+20. Now you can go to to the [Firebase Console](https://console.firebase.google.com/)  in your web browser, and you should find your project. It should be a large white tile with the name of your app. Click on your project, then go to the firebase dashboard, and go to **Authentication** -> **Sign-In-Method**, and click on whichever sign in options you like. We recommend clicking only on the **Sign in with Email and Password** option, or further steps will become more complicated. Switch both Sign in switches to "On" and click **Save**.
 
-12. Click the **Gradle Sync** Button again.
+21. Click the **Gradle Sync** Button again.
 
-13. At this point you must decide whether you would like to integrate Chat SDK into the App or not. If you wish to do so, then skip ahead to step **25**. If not, then keep following the next 2 steps, and then you are done.
+22. At this point you must decide whether you would like to integrate Chat SDK into the App or not. If you wish to do so, then skip ahead to step **25**. If not, then keep following the next 2 steps, and then you are done.
 
-14. Run the app and click on the sign in button when the app launches. Select your preferred login account when the option **Continue with** comes up. When you click on **Save**. When the smart lock option comes up, make sure you click **SAVE PASSWORD, or else it will not work!**
+23. Run the app and click on the sign in button when the app launches. Select your preferred login account when the option **Continue with** comes up. When you click on **Save**. When the smart lock option comes up, make sure you click **SAVE PASSWORD, or else it will not work!**
 
-15. Congratulations, you are now logged in with android Firebase UI.
+24. Congratulations, you are now logged in with android Firebase UI.
 
-16. Go to the **Project Level** `build.gradle` file, then find the section of `repositories` in `allprojects`, and add the following code inside of it:
+25. Go to the **Project Level** `build.gradle` file, then find the section of `repositories` in `allprojects`, and add the following code inside of it:
 
    ```
     maven { url "http://dl.bintray.com/chat-sdk/chat-sdk-android" }

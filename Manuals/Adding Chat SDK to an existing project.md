@@ -117,7 +117,7 @@ If you wish to log in using the Chat SDK Login Screen, add this code to your `An
        InterfaceManager.shared().a.startLoginActivity(context, true);
 
 
-####Login using Firebase UI
+#### Login using Firebase UI
 
 ##### Add the library
 
@@ -154,7 +154,7 @@ You can provide a list of providers as outlined in the [Firebase documentation](
 > **Note**
 > You will need to remove the `com.facebook.sdk.ApplicationId` meta data from the app manifest or you will get a Gradle build error. 
 
-####Login using custom UI i.e.. if you have an existing Firebase project
+#### Login using custom UI i.e.. if you have an existing Firebase project
 
 Add the following to the end of your `onCreate` method in your main class (previously termed "AndroidApp")
 
@@ -165,7 +165,7 @@ Add the following to the end of your `onCreate` method in your main class (previ
 ​      // Error
   });
    ```
-####Firebase
+#### Firebase
 
 10. Now you can go to to the [Firebase console](https://console.firebase.google.com/)  in your web browser, and you should find your project. It should be a large white tile with the name of your app. Click on your project, then go to the firebase dashboard, and go to Authentication -> Sign-In-Method, and click on whichever sign in options you like. We recommend clicking only on the "Sign in with Email and Password" option, or further steps will become more complicated.
 
@@ -351,7 +351,5 @@ After you have purchased the module you will be provided with a link to the modu
    ```
 
    Replace ´ContactBook` with the name of the specific module you would like to activate.
-
-   ```
 
    ```

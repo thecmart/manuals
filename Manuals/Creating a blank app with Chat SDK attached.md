@@ -8,28 +8,28 @@
 5. Find the section of `repositories` in `allprojects`, and add the following code inside of it:
 
    ```
-maven { url "http://dl.bintray.com/chat-sdk/chat-sdk-android" }
-maven { url "https://maven.google.com" }
-maven { url "https://jitpack.io" }
+    maven { url "http://dl.bintray.com/chat-sdk/chat-sdk-android" }
+    maven { url "https://maven.google.com" }
+    maven { url "https://jitpack.io" }
    ```
 
    The result should look like this:
    ```
-allprojects {
-    repositories {
+    allprojects {
+      repositories {
         google()
         jcenter()
         maven { url "http://dl.bintray.com/chat-sdk/chat-sdk-android" }
         maven { url "https://maven.google.com" }
         maven { url "https://jitpack.io" }
+      }
     }
-}
    ```
 
 6. Then add this to your `dependencies` area of the same file:
 
    ```
-classpath 'com.google.gms:google-services:4.0.1'
+    classpath 'com.google.gms:google-services:4.0.1'
    ```
 
 7. Move your mouse over that line lines slowly, if android studio tells you that the version is outdated, enter the number of the latest version in place of the 4.0.1.
@@ -39,12 +39,12 @@ classpath 'com.google.gms:google-services:4.0.1'
 9. Add the following code to the build.gradle file, in the section  `dependencies`:
 
    ```
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.1.35'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.1.35'
-implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.1.35'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.35'
    ```
 
 10. Move your mouse over these lines slowly, if android studio tells you that these versions are outdated, enter the number of the latest version in the appropriate line in place of the number of the latest version.
@@ -52,14 +52,15 @@ implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.35'
 11. Find the `android {    }` section of the file. Add this code inside of it, but not inside any of the other items inside of it:
 
    ```
-compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
+    compileOptions {
+      sourceCompatibility JavaVersion.VERSION_1_8
+      targetCompatibility JavaVersion.VERSION_1_8
 }
    ```
 It should then look like this :
-   ```android {
-android {
+   ```
+    android {
+    android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "domain.testing.testapp2"
@@ -67,7 +68,7 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner     "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -79,29 +80,29 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-}
+    }
    ```
 12. Add this to the very end of the app level `build.gradle` file:
 
    ```
-apply plugin: 'com.google.gms.google-services'
+    apply plugin: 'com.google.gms.google-services'
    ```
 
 13. Now you need to create a new class. Under the **app** folder on the right, click on **src**, then on "main, and then on **java**. Under **java** there should  be a folder with the package name. Right click on it, then go to **new** and click on **Java Class**. Call the class "AndroidApp" and under the label Superclass, write "Application". In the body of the class, erase all text **except for the first line.** This would normally be `package PACKAGE NAME;`and copy this code into it:
 
    ```
-   import android.app.Application;
-   import android.content.Context;
+    import android.app.Application;
+    import android.content.Context;
    
-   import co.chatsdk.core.error.ChatSDKException;
-   import co.chatsdk.core.session.ChatSDK;
-   import co.chatsdk.core.session.Configuration;
-   import co.chatsdk.firebase.FirebaseNetworkAdapter;
-   import co.chatsdk.firebase.file_storage.FirebaseFileStorageModule;
-   import co.chatsdk.firebase.push.FirebasePushModule;
-   import co.chatsdk.ui.manager.BaseInterfaceAdapter;
+    import co.chatsdk.core.error.ChatSDKException;
+    import co.chatsdk.core.session.ChatSDK;
+    import co.chatsdk.core.session.Configuration;
+    import co.chatsdk.firebase.FirebaseNetworkAdapter;
+    import co.chatsdk.firebase.file_storage.FirebaseFileStorageModule;
+    import co.chatsdk.firebase.push.FirebasePushModule;
+    import co.chatsdk.ui.manager.BaseInterfaceAdapter;
 
-   public class AndroidApp extends Application {
+    public class AndroidApp extends Application {
 
     @Override
     public void onCreate() {
@@ -110,14 +111,14 @@ apply plugin: 'com.google.gms.google-services'
         Context context = getApplicationContext();
 
    // Create a new configuration
-        Configuration.Builder config = new    Configuration.Builder(context);
+        Configuration.Builder config = new        Configuration.Builder(context);
 
    // Perform any configuration steps (optional)
         config.firebaseRootPath("prod");
 
    // Initialize the Chat SDK
         try {
-            ChatSDK.initialize(config.build(), new    BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
+            ChatSDK.initialize(config.build(), new        BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
         }
         catch (ChatSDKException e) {
         }
@@ -130,7 +131,7 @@ apply plugin: 'com.google.gms.google-services'
    // ...
 
     }
-   }
+    }
 
    ```
 
@@ -158,20 +159,20 @@ apply plugin: 'com.google.gms.google-services'
 17. On the line `android:theme="@style/AppTheme"/>` delete the `/` then click after the `>`  and hit the enter button. Now write `</application>`. Copy the code below, then click to the right of the `>` in the line `android:theme="@style/AppTheme">`, hit enter and paste the code :
 
    ```
-<activity android:name="co.chatsdk.ui.login.LoginActivity">
-    <intent-filter>
+    <activity android:name="co.chatsdk.ui.login.LoginActivity">
+      <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
-    </intent-filter>
-</activity>
+      </intent-filter>
+    </activity>
    ```
 
 18. Now add the line ```<?xml version="1.0" encoding="utf-8"?>``` At the very top of the file. The result should look like this:
 
    ```
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="PACKAGE NAME">
+    <?xml version="1.0" encoding="utf-8"?>
+    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="PACKAGE NAME">
 
     <application
         android:name=".AndroidApp"
@@ -184,11 +185,11 @@ apply plugin: 'com.google.gms.google-services'
         <activity android:name="co.chatsdk.ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category     android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
-</manifest>
+      </application>
+    </manifest>
    ```
 
 19. The purpose of this step was to set the Chat SDK login activity to launch when the app is launched, meaning that this login screen will be the first thing you see when you run the App.
@@ -206,7 +207,7 @@ apply plugin: 'com.google.gms.google-services'
 25. Now go back to Android Studio. Add the following to the setup code in the AndroidApp's `onCreate` method.
 
    ```
-config.firebaseCloudMessagingServerKey("YOUR SERVER KEY");
+    config.firebaseCloudMessagingServerKey("YOUR SERVER KEY");
    ```
 
 26. Go back to your [Firebase Console](https://console.firebase.google.com/) , click on your app, Click on **Storage** at the left, click on **Get Started**, then click on **Got it**.
@@ -216,7 +217,7 @@ config.firebaseCloudMessagingServerKey("YOUR SERVER KEY");
 
 28. Now click on the button called **Sync Project with Gradle Files**. It should be at the top left hand corner, 5 buttons from the google account button. When the gradle sync completes, your App is ready to go!
 
-###Enabling location based messages
+### Enabling location based messages
 
 29. If you would like for your app to be able to receive messages based on the location of the user's device, then you need to activate location based messages. The Chat SDK needs two google services to support location messages. The [Google Places API](https://developers.google.com/places/) to select the location and the [Google Static Maps API](https://developers.google.com/maps/documentation/static-maps/) to display the location.
 

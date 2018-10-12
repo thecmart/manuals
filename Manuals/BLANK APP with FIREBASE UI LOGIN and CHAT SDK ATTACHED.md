@@ -25,8 +25,8 @@
 10. Click on the button `Text` in the middle of the screen, then erase all the code you see, and copy the following code into it:
 
    ```
-   <?xml version="1.0" encoding="utf-8"?>
-   <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <?xml version="1.0" encoding="utf-8"?>
+    <android.support.constraint.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
        xmlns:app="http://schemas.android.com/apk/res-auto"
        xmlns:tools="http://schemas.android.com/tools"
        android:layout_width="match_parent"
@@ -47,7 +47,7 @@
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintTop_toTopOf="parent" />
-   </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
    ```
 
 2. Open the folder that says ```values```, open the ```strings.xml``` file and add this to the resources:    ```<string name="login_button_text">Login With Firebase UI</string>```
@@ -117,33 +117,33 @@
 16. Go to the **Project Level** `build.gradle` file, then find the section of `repositories` in `allprojects`, and add the following code inside of it:
 
    ```
-maven { url "http://dl.bintray.com/chat-sdk/chat-sdk-android" }
-maven { url "https://maven.google.com" }
-maven { url "https://jitpack.io" }
+    maven { url "http://dl.bintray.com/chat-sdk/chat-sdk-android" }
+    maven { url "https://maven.google.com" }
+    maven { url "https://jitpack.io" }
    ```
 
-​       The result should look like this:
+    The result should look like this:
    ```
-allprojects {
-    repositories {
+    allprojects {
+      repositories {
         google()
         jcenter()
         maven { url "http://dl.bintray.com/chat-sdk/chat-sdk-android" }
         maven { url "https://maven.google.com" }
         maven { url "https://jitpack.io" }
+     }
     }
-   }
    ```
 
 26. Add the following code to the **App Level** build.gradle file, in the section  `dependencies`:
 
    ```
-   implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
-   implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.1.35'
-   implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.1.35'
-   implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.1.35'
-   implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
-   implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.35'
    ```
 
 27. Move your mouse over these lines slowly, if android studio tells you that these versions are outdated, enter the number of the latest version in the appropriate line in place of the number of the latest version.
@@ -151,56 +151,57 @@ allprojects {
 28. Find the `android {    }` section of the file. Add this code inside of it, but not inside any of the other items inside of it:
 
    ```
-   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-   }
+    compileOptions {
+     sourceCompatibility JavaVersion.VERSION_1_8
+     targetCompatibility JavaVersion.VERSION_1_8
+    }
    ```
    It should then look like this :
-   ```android {
-   android {
-    compileSdkVersion 27
-    defaultConfig {
+   ```
+    android {
+     android {
+      compileSdkVersion 27
+      defaultConfig {
         applicationId "domain.testing.testapp2"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner     "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-    android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+     }
     }
-   }
    ```
 29. Add this to the very end of the app level `build.gradle` file:
 
    ```
-   apply plugin: 'com.google.gms.google-services'
+    apply plugin: 'com.google.gms.google-services'
    ```
 
 30. Now you need to create a new class. Under the **app** folder on the right, click on **src**, then on "main, and then on **java**. Under **java** there should  be a folder with the package name. Right click on it, then go to **new** and click on **Java Class**. Call the class "AndroidApp" and under the label Superclass, write "Application". In the body of the class, erase all text **except for the first line.** This would normally be `package PACKAGE NAME;`and copy this code into it:
 
    ```
-   import android.app.Application;
-   import android.content.Context;
+    import android.app.Application;
+    import android.content.Context;
    
-   import co.chatsdk.core.error.ChatSDKException;
-   import co.chatsdk.core.session.ChatSDK;
-   import co.chatsdk.core.session.Configuration;
-   import co.chatsdk.firebase.FirebaseNetworkAdapter;
-   import co.chatsdk.firebase.file_storage.FirebaseFileStorageModule;
-   import co.chatsdk.firebase.push.FirebasePushModule;
-   import co.chatsdk.ui.manager.BaseInterfaceAdapter;
+    import co.chatsdk.core.error.ChatSDKException;
+    import co.chatsdk.core.session.ChatSDK;
+    import co.chatsdk.core.session.Configuration;
+    import co.chatsdk.firebase.FirebaseNetworkAdapter;
+    import co.chatsdk.firebase.file_storage.FirebaseFileStorageModule;
+    import co.chatsdk.firebase.push.FirebasePushModule;
+    import co.chatsdk.ui.manager.BaseInterfaceAdapter;
    
-   public class AndroidApp extends Application {
+    public class AndroidApp extends Application {
    
     @Override
     public void onCreate() {
@@ -208,28 +209,28 @@ allprojects {
    
         Context context = getApplicationContext();
    
-   // Create a new configuration
-           Configuration.Builder config = new    Configuration.Builder(context);
+    // Create a new configuration
+           Configuration.Builder config = new     Configuration.Builder(context);
    
-   // Perform any configuration steps (optional)
+    // Perform any configuration steps (optional)
            config.firebaseRootPath("prod");
    
-   // Initialize the Chat SDK
+    // Initialize the Chat SDK
            try {
-               ChatSDK.initialize(config.build(), new    BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
+               ChatSDK.initialize(config.build(), new     BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
            }
            catch (ChatSDKException e) {
            }
    
-   // File storage is needed for profile image upload and image messages
+    // File storage is needed for profile image upload and image messages
            FirebaseFileStorageModule.activate();
            FirebasePushModule.activateForFirebase();
    
-   // Activate any other modules you need.
-   // ...
+    // Activate any other modules you need.
+    // ...
    
+     }
     }
-   }
    
    ```
 
@@ -240,8 +241,8 @@ allprojects {
 33. Currently, your `Android Manifest.xml` file should look something like this: 
 
    ```
-   <?xml version="1.0" encoding="utf-8"?>
-   <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    <?xml version="1.0" encoding="utf-8"?>
+    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
        package="domain.testing.totalintegrationtest">
    
     <application
@@ -256,7 +257,7 @@ allprojects {
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
     
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category  android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
@@ -274,7 +275,7 @@ allprojects {
         }
     
         protected void authenticateWithCachedToken () {
-                showProgressDialog(getString(chatsdk.co.chat_sdk_firebase_ui.R.string.authenticating));
+                showProgressDialog(getString(chatsdk.co.chat_sdk_firebase_ui.R.string.a uthenticating));
             signInButton.setEnabled(false);
             ChatSDK.auth().authenticateWithCachedToken()
                     .observeOn(AndroidSchedulers.mainThread())
@@ -291,7 +292,7 @@ allprojects {
     
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             super.onActivityResult(requestCode, resultCode, data);
-            // RC_SIGN_IN is the request code you passed into startActivityForResult(...) when starting the sign in flow.
+            // RC_SIGN_IN is the request code you passed into  startActivityForResult(...) when starting the sign in flow.
             if (requestCode == RC_SIGN_IN) {
                 IdpResponse response = IdpResponse.fromResultIntent(data);
     
@@ -371,12 +372,12 @@ allprojects {
 
 20. Click on the Gradle Sync button.
 
-1. Now go to get the push token.  Go to your [Firebase Console](https://console.firebase.google.com/), click on your project, then click on the **Gear Button** in the top left corner, and then the **Project Settings** button. In the **Could Messaging** tab, copy the **Server Key**.
+21. Now go to get the push token.  Go to your [Firebase Console](https://console.firebase.google.com/), click on your project, then click on the **Gear Button** in the top left corner, and then the **Project Settings** button. In the **Could Messaging** tab, copy the **Server Key**.
 
-2. Now go back to Android Studio. Add the following to the setup code in the AndroidApp's `onCreate` method.
+22. Now go back to Android Studio. Add the following to the setup code in the AndroidApp's `onCreate` method.
 
    ```
-config.firebaseCloudMessagingServerKey("YOUR SERVER KEY");
+    config.firebaseCloudMessagingServerKey("YOUR SERVER KEY");
    ```
 
 26. Go back to your [Firebase Console](https://console.firebase.google.com/) , click on your app, Click on **Storage** at the left, click on **Get Started**, then click on **Got it**.
@@ -386,23 +387,23 @@ config.firebaseCloudMessagingServerKey("YOUR SERVER KEY");
 
 28. Now click on the button called **Sync Project with Gradle Files**. It should be at the top left hand corner, 5 buttons from the google account button. When the gradle sync completes, your App is ready to go!
 
-###Enabling location based messages
+### Enabling location based messages
 
-29. If you would like for your app to be able to receive messages based on the location of the user's device, then you need to activate location based messages. The Chat SDK needs two google services to support location messages. The [Google Places API](https://developers.google.com/places/) to select the location and the [Google Static Maps API](https://developers.google.com/maps/documentation/static-maps/) to display the location.
+43. If you would like for your app to be able to receive messages based on the location of the user's device, then you need to activate location based messages. The Chat SDK needs two google services to support location messages. The [Google Places API](https://developers.google.com/places/) to select the location and the [Google Static Maps API](https://developers.google.com/maps/documentation/static-maps/) to display the location.
 
-30. Go to the [Google Places API](https://developers.google.com/places/) page, click **Get Started**, then click **Places**, and then click **Continue**.
+44. Go to the [Google Places API](https://developers.google.com/places/) page, click **Get Started**, then click **Places**, and then click **Continue**.
 
-31. After this you select your Project from the drop down lit and click **Next**. Then **QUICKLY** click on **Create a billing Account** when the dialog box pops up. If you miss it, simply repeat steps 30 and 31. In order to do this you will need a billing account. If you want to do that, then continue, otherwise disable location messages by placing this text into the AndroidApp's `Oncreate` method: ```config.locationMessagesEnabled(false)``` and skip to the conclusion, otherwise follow the next steps.
+45. After this you select your Project from the drop down lit and click **Next**. Then **QUICKLY** click on **Create a billing Account** when the dialog box pops up. If you miss it, simply repeat steps 30 and 31. In order to do this you will need a billing account. If you want to do that, then continue, otherwise disable location messages by placing this text into the AndroidApp's `Oncreate` method: ```config.locationMessagesEnabled(false)``` and skip to the conclusion, otherwise follow the next steps.
 
-32. Select your country, and accept the Terms of Service, then click **Agree and Continue**. Click **Set up payments profile** and enter your billing information. Click **Start my free trial**, then click **Next** to enable to google maps platform. Copy your API key and click **Done**.
+46. Select your country, and accept the Terms of Service, then click **Agree and Continue**. Click **Set up payments profile** and enter your billing information. Click **Start my free trial**, then click **Next** to enable to google maps platform. Copy your API key and click **Done**.
 
-33. Although you need to setup billing, Google give you 200 USD per month for free. So you can load 10 million free location messages for free per month.
+47. Although you need to setup billing, Google give you 200 USD per month for free. So you can load 10 million free location messages for free per month.
 
-34. Go back to Android Studio, Add this line to the `oncreate` method of the AndroidApp: `config.googleMaps("YOUR GOOGLE PLACES API KEY");`
+48. Go back to Android Studio, Add this line to the `oncreate` method of the AndroidApp: `config.googleMaps("YOUR GOOGLE PLACES API KEY");`
 
-35. Now go the `AndroidManifest.xml` file and add this line directly above `</application>`line in the file: `<meta-data android:name="com.google.android.geo.API_KEY" android:value="YOUR COPIED GOOGLE PLACES API KEY"/>`
+49. Now go the `AndroidManifest.xml` file and add this line directly above `</application>`line in the file: `<meta-data android:name="com.google.android.geo.API_KEY" android:value="YOUR COPIED GOOGLE PLACES API KEY"/>`
 
-36. Now go to [Google Static Maps API](https://developers.google.com/maps/documentation/static-maps/) and click on **Get Started**. Click on **Maps** and click **Continue**. Select the appropriate project and click **Next**, copy the API Key then click **Done**. Save this API Key in some other file as you may need it later.
+50. Now go to [Google Static Maps API](https://developers.google.com/maps/documentation/static-maps/) and click on **Get Started**. Click on **Maps** and click **Continue**. Select the appropriate project and click **Next**, copy the API Key then click **Done**. Save this API Key in some other file as you may need it later.
 
 ### Conclusion
 

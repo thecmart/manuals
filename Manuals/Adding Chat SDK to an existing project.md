@@ -9,36 +9,36 @@
     maven { url "https://jitpack.io" }
    ```
 
-3. Then add this to your `dependencies` area of the same file, if it is not already there:  
+2. Then add this to your `dependencies` area of the same file, if it is not already there:  
 
     ```
     classpath 'com.google.gms:google-services:4.0.1'
     ```
 
-4. Add the following code to the **App Level** build.gradle file, in the section  `dependencies`:
+3. Add the following code to the **App Level** build.gradle file, in the section  `dependencies`:
 
    ```
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.1.35'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.1.35'
-implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.1.35'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.35'
    ```
 
 5. Find the `android {    }` section of the file. Add this code inside of it, but not inside any of the other items inside of it:
 
    ```
-compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-}
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
    ```
 
 6. Add this to the very end of the **App Level** `build.gradle` file, if you haven't already:
 
    ```
-apply plugin: 'com.google.gms.google-services'
+    apply plugin: 'com.google.gms.google-services'
    ```
 
 6. Now you need to create a new class. Call the class "AndroidApp", or any other name you desire, and under the label Superclass, write "Application". In the body of the class, erase all text **except for the package line at the top.** Then copy this code into it:
@@ -144,6 +144,10 @@ Add this to your `AndroidManifest.xml` in place of whichever sign in activity yo
 ​    </intent-filter>
 </activity>
    ```
+
+**VERY IMPORTANT!**
+
+**Make sure that when you are asked by google if you wish to save the password, you select the option for it to save the password! Otherwise the firebase UI Login will not work!**
 
 You can provide a list of providers as outlined in the [Firebase documentation](https://github.com/firebase/FirebaseUI-Android/blob/master/auth/README.md#sign-in-examples). 
 
@@ -347,51 +351,6 @@ After you have purchased the module you will be provided with a link to the modu
    ```
 
    Replace ´ContactBook` with the name of the specific module you would like to activate.
-
-**Firebase UI**
-
-**Add the library**
-
-Add the following to your app level build.gradle file:
-
-implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.26'
-
-Move your mouse over these lines slowly, if android studio tells you that these versions are outdated, enter the number of the latest version in the appropriate line in place of the number of the latest version.
-
-**Enable the module**
-
-Add this in the list of import lines at the top of the AndroidApp (or equivalent) class.
-
-import com.google.firebase.auth.EmailAuthProvider;
-import com.google.firebase.auth.PhoneAuthProvider;
-
-Add the following to the end of your onCreate method in your main class (previously termed "AndroidApp"):
-
-FirebaseUIModule.activate(context, EmailAuthProvider.PROVIDER_ID, PhoneAuthProvider.PROVIDER_ID);
-
-Add this to your AndroidManifest.xml in place of whichever sign in activity you were previously using.
-
-
-   ```
-<activity
-android:name="co.chatsdk.firebase.ui.FirebaseUIActivity">
-  <intent-filter>
-      <action
-android:name="android.intent.action.MAIN" />
-      <category
-android:name="android.intent.category.LAUNCHER" />
-  </intent-filter>
-</activity>
-
-   ```
-
-You can provide a list of providers as outlined in the [Firebase documentation](https://github.com/firebase/FirebaseUI-Android/blob/master/auth/README.md#sign-in-examples). 
-
-**VERY IMPORTANT!**
-
-**Make sure that when you are asked by google if you wish to save the password, you select the option for it to save the password! Otherwise the firebase UI Login will not work!**
-
-**Note** You will need to remove the `com.facebook.sdk.ApplicationId` meta data from the app manifest or you will get a Gradle build error. 
 
    ```
 

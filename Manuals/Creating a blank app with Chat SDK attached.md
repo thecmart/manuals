@@ -57,9 +57,9 @@
       targetCompatibility JavaVersion.VERSION_1_8
     }
    ```
-   
-   It should then look like this :
-   
+
+    It should then look like this :
+
    ```
     android {
     android {
@@ -84,7 +84,7 @@
      }
     }
    ```
-   
+
 12. Add this to the very end of the app level `build.gradle` file:
 
    ```
@@ -133,7 +133,7 @@
    // Activate any other modules you need.
    // ...
 
-    }
+     }
     }
 
    ```

@@ -26,7 +26,7 @@
     implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.35'
    ```
 
-5. Find the `android {    }` section of the file. Add this code inside of it, but not inside any of the other items inside of it:
+4. Find the `android {    }` section of the file. Add this code inside of it, but not inside any of the other items inside of it:
 
    ```
     compileOptions {
@@ -35,7 +35,7 @@
     }
    ```
 
-6. Add this to the very end of the **App Level** `build.gradle` file, if you haven't already:
+5. Add this to the very end of the **App Level** `build.gradle` file, if you haven't already:
 
    ```
     apply plugin: 'com.google.gms.google-services'
@@ -53,45 +53,49 @@
    import co.chatsdk.firebase.file_storage.FirebaseFileStorageModule;
    import co.chatsdk.firebase.push.FirebasePushModule;
    import co.chatsdk.ui.manager.BaseInterfaceAdapter;
-
+   
    public class AndroidApp extends Application {
-
+   
     @Override
     public void onCreate() {
         super.onCreate();
     
         Context context = getApplicationContext();
-
+   
    // Create a new configuration
         Configuration.Builder builder = new         Configuration.Builder(context);
-
+   
    // Perform any configuration steps (optional)
         builder.firebaseRootPath("prod");
-
+   
    // Initialize the Chat SDK
         try {
             ChatSDK.initialize(builder.build(), new    BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
         }
         catch (ChatSDKException e) {
         }
-
+   
    // File storage is needed for profile image upload and image messages
         FirebaseFileStorageModule.activate();
         FirebasePushModule.activateForFirebase();
-
+   
    // Activate any other modules you need.
    // ...
-
+   
     }
    }
    ```
 
-8. Open your `AndroidManifest.xml` file, and add this line to the`<application` section: `android:name=".AndroidApp"`. If you gave the AndroidApp class a different name, enter that name instead.
+7. Open your `AndroidManifest.xml` file, and add this line to the`<application` section: `android:name=".AndroidApp"`. If you gave the AndroidApp class a different name, enter that name instead.
 
-9. Now, depending on the configuration of your project, there are three options to login with the Chat SDK, pick one of them and proceed with the instructions below:
+8. Now, depending on the configuration of your project, there are three options to login with the Chat SDK, pick one of them and proceed with the instructions below:
 
-  A. **Running Chat SDK from your app when you are already logged in**                                                      B. **Login using Chat SDK Login Screen**
+  A. **Running Chat SDK from your app when you are already logged in**
+
+  B. **Login using Chat SDK Login Screen**
+
   C. **Login using Firebase UI**
+
   D. **Login using custom UI i.e. if you have an existing Firebase project**
 
   For the option of logging in with either Facebook, Twitter or Google, please see the section for this below.

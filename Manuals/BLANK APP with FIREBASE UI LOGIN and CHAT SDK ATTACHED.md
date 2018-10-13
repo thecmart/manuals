@@ -3,8 +3,8 @@
 
 1. In Android Studio, Go to **File** -> **New** -> **Project**.
 2. Enter a name for the **Application** as you see fit. Change the **Company domain** to a relevant value for your organization. Be sure to note the **Application name**, the **Company domain**, and the **Package name**. You will need this information later. Click **Next**. Make sure the checkbox of Phone and Tablet is checked, then click **Next**. Click **Empty Activity**. Then call the Activity Name **MainActivity**, all the Layout Name **activity_main**, and make sure the two check boxes are clicked, and click **Finish**.
-3. Open the top level `build.gradle` file. You can do this by clicking on the vertical **Project** tab in the upper left hand corner, then clicking on the horizontal **Project** option in the drop down menu beside it. ![Project and Project](C:\Users\DELTA\Desktop\Chat SDK Integration Manuals\Images\Project and Project.png)
-4. Click on the folder with the **name of your App**, then click on the **build.gradle** file. When you open it, the tab should have the name of your App. That’s how you know it’s the **project level** `build.gradle` file. It should have the name of your App when you open it. ![Top Level Build Gradle File](C:\Users\DELTA\Desktop\Chat SDK Integration Manuals\Images\Top Level Build Gradle File.png)
+3. Open the top level `build.gradle` file. You can do this by clicking on the vertical **Project** tab in the upper left hand corner, then clicking on the horizontal **Project** option in the drop down menu beside it. ![Project and Project](https://github.com/thecmart/manuals/blob/master/Images/Project%20and%20Project.png)
+4. Click on the folder with the **name of your App**, then click on the **build.gradle** file. When you open it, the tab should have the name of your App. That’s how you know it’s the **project level** `build.gradle` file. It should have the name of your App when you open it. ![Top Level Build Gradle File](https://github.com/thecmart/manuals/blob/master/Images/Top%20Level%20Build%20Gradle%20File.png)
 
 5. Find the section of `dependencies` and add this code inside of it:
 
@@ -24,16 +24,16 @@
 
 10. Click on the button `Text` in the middle of the screen, then erase all the code you see, and copy the following code into it:
 
-  ```
-   <?xml version="1.0" encoding="utf-8"?>
-   <android.support.constraint.ConstraintLayout
-   xmlns:android="http://schemas.android.com/apk/res/android"
+   ```
+    <?xml version="1.0" encoding="utf-8"?>
+    <android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       tools:context=".MainActivity">
-  
+    
       <Button
           android:id="@+id/button"
           android:layout_width="wrap_content"
@@ -48,38 +48,38 @@
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
-   </android.support.constraint.ConstraintLayout>
-  ```
+    </android.support.constraint.ConstraintLayout>
+   ```
 
 11. Open the folder that says ```values```, open the ```strings.xml``` file and add this to the resources:    ```<string name="login_button_text">Login With Firebase UI</string>```
 
 12. Now you need to create a new class. Under the **app** folder on the right, click on **src**, then on "main, and then on **java**. Under **java** there should  be a folder with the package name. Then click on `MainActivity`. Now add this code underneath the first line that starts with `package`: 
 
    ```
-   import com.firebase.ui.auth.AuthUI;
-   import com.firebase.ui.auth.ErrorCodes;
-   import com.firebase.ui.auth.IdpResponse;
-   import com.google.firebase.FirebaseApp;
+    import com.firebase.ui.auth.AuthUI;
+    import com.firebase.ui.auth.ErrorCodes;
+    import com.firebase.ui.auth.IdpResponse;
+    import com.google.firebase.FirebaseApp;
    ```
 
-13. Next, add this line below this line: `public class MainActivity extends AppCompatActivity {`: ```
+13. Next, add this line below the line: `public class MainActivity extends AppCompatActivity {`
 
    ```
-   Button signInButton;
-   public static final int RC_SIGN_IN = 900;
+    Button signInButton;
+    public static final int RC_SIGN_IN = 900;
    ```
 
 14. Then add these two lines inside of the `onCreate` method: 
 
    ```
-   FirebaseApp.initializeApp(this);
-   signInButton = (Button) findViewById(R.id.button);
+    FirebaseApp.initializeApp(this);
+    signInButton = (Button) findViewById(R.id.button);
    ```
 
 15. Now Add this outside of the `onCreate` method:
 
    ```
-   public void startAuthenticationActivity () {
+    public void startAuthenticationActivity () {
        ArrayList<AuthUI.IdpConfig> idps = new ArrayList<>();
    
        idps.add(new AuthUI.IdpConfig.EmailBuilder().build());
@@ -90,14 +90,14 @@
                        .setAvailableProviders(idps)
                        .build(),
                RC_SIGN_IN);
-   }
+    }
    
-   public void login_click (View v) {
+    public void login_click (View v) {
        startAuthenticationActivity();
-   }
+    }
    ```
 
-16. Go to the very top right hand button (When you mouse over this button, it will say sign in to Google, and use it to sign in to Google with your Google account. If you do not have a Google account, you can use the button to create one.![Buttons](C:\Users\DELTA\Desktop\Chat SDK Integration Manuals\Images\Buttons.png)
+16. Go to the very top right hand button (When you mouse over this button, it will say sign in to Google, and use it to sign in to Google with your Google account. If you do not have a Google account, you can use the button to create one.![Buttons](https://github.com/thecmart/manuals/blob/master/Images/Buttons.png)
 
 17. Now click on the button called **Sync Project with Gradle Files**. It should be at the top right hand corner, 5 buttons from the google account button. Ignore any messages telling you that the build failed,
 
@@ -157,7 +157,9 @@
      targetCompatibility JavaVersion.VERSION_1_8
     }
    ```
+   
    It should then look like this :
+   
    ```
     android {
      android {
@@ -168,7 +170,7 @@
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner     "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner      "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -182,6 +184,7 @@
      }
     }
    ```
+   
 29. Add this to the very end of the app level `build.gradle` file:
 
    ```
@@ -211,7 +214,7 @@
         Context context = getApplicationContext();
    
     // Create a new configuration
-           Configuration.Builder config = new     Configuration.Builder(context);
+           Configuration.Builder config = new      Configuration.Builder(context);
    
     // Perform any configuration steps (optional)
            config.firebaseRootPath("prod");
@@ -232,7 +235,6 @@
    
      }
     }
-   
    ```
 
 31. If you have this class a different name than AndroidApp, you need to change the name of it in the line `public class AndroidApp extends Application` to whatever the name of the app is.

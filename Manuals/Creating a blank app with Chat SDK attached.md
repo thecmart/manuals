@@ -3,8 +3,8 @@
 
 1. In Android Studio, Go to **File** -> **New** -> **Project**.
 2. Enter a name for the **Application** as you see fit. Change the **Company domain** to a relevant value for your organization. Be sure to note the **Application name**, the **Company domain**, and the **Package name**. You will need this information later. Click **Next**. Make sure the checkbox of Phone and Tablet is checked, then click **Next**.  Click **Add No Activity** and click **Finish**.
-3. Open the top level `build.gradle` file. You can do this by clicking on the vertical **Project** tab in the upper left hand corner, then clicking on the horizontal **Project** option in the drop down menu beside it. ![Project and Project](C:\Users\DELTA\Desktop\Chat SDK Integration Manuals\Images\Project and Project.png)
-4. Click on the folder with the **name of your App**, then click on the **build.gradle** file. When you open it, the tab should have the name of your App. That’s how you know it’s the project level `build.gradle` file. It should have the name of your App when you open it. ![Top Level Build Gradle File](C:\Users\DELTA\Desktop\Chat SDK Integration Manuals\Images\Top Level Build Gradle File.png)
+3. Open the top level `build.gradle` file. You can do this by clicking on the vertical **Project** tab in the upper left hand corner, then clicking on the horizontal **Project** option in the drop down menu beside it. ![Project and Project](https://github.com/thecmart/manuals/blob/master/Images/Project%20and%20Project.png)
+4. Click on the folder with the **name of your App**, then click on the **build.gradle** file. When you open it, the tab should have the name of your App. That’s how you know it’s the project level `build.gradle` file. It should have the name of your App when you open it. ![Top Level Build Gradle File](https://github.com/thecmart/manuals/blob/master/Images/Top%20Level%20Build%20Gradle%20File.png)
 5. Find the section of `repositories` in `allprojects`, and add the following code inside of it:
 
    ```
@@ -55,9 +55,11 @@
     compileOptions {
       sourceCompatibility JavaVersion.VERSION_1_8
       targetCompatibility JavaVersion.VERSION_1_8
-}
+    }
    ```
-It should then look like this :
+   
+   It should then look like this :
+   
    ```
     android {
     android {
@@ -68,7 +70,7 @@ It should then look like this :
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner     "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner             "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -79,9 +81,10 @@ It should then look like this :
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
+     }
     }
    ```
+   
 12. Add this to the very end of the app level `build.gradle` file:
 
    ```
@@ -185,7 +188,7 @@ It should then look like this :
         <activity android:name="co.chatsdk.ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category     android:name="android.intent.category.LAUNCHER" />
+                <category        android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
       </application>
@@ -194,7 +197,7 @@ It should then look like this :
 
 19. The purpose of this step was to set the Chat SDK login activity to launch when the app is launched, meaning that this login screen will be the first thing you see when you run the App.
 
-20. Open your Android Studio Suite. Go to the very top right hand button (When you mouse over this button, it will say sign in to Google, and use it to sign in to Google with your Google account. If you do not have a Google account, you can use the button to create one.![Buttons](C:\Users\DELTA\Desktop\Chat SDK Integration Manuals\Images\Buttons.png)
+20. Open your Android Studio Suite. Go to the very top right hand button (When you mouse over this button, it will say sign in to Google, and use it to sign in to Google with your Google account. If you do not have a Google account, you can use the button to create one.![Buttons](https://github.com/thecmart/manuals/blob/master/Images/Buttons.png)
 
 21. Now click on the button called **Sync Project with Gradle Files**. It should be at the top right hand corner, 5 buttons from the google account button. Ignore any messages telling you that the build failed,
 

@@ -12,17 +12,16 @@
 2. Then add this to your `dependencies` area of the same file, if it is not already there:  
 
     ```
-    classpath 'com.google.gms:google-services:4.0.1'
+    classpath 'com.google.gms:google-services:4.2.0'
     ```
 
 3. Add the following code to the **App Level** build.gradle file, in the section  `dependencies`:
 
    ```
-    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.1.35'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.1.35'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.1.35'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.4.4'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.4.4'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.4.8'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.4.8'
     implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.35'
    ```
 
@@ -77,7 +76,7 @@
    
    // File storage is needed for profile image upload and image messages
         FirebaseFileStorageModule.activate();
-        FirebasePushModule.activateForFirebase();
+        FirebasePushModule.activate();
    
    // Activate any other modules you need.
    // ...

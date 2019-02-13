@@ -2,8 +2,11 @@
 ###### Quick start guide - it takes about 15 minutes! This instruction manual assumes that you are a beginner at using Android Studio and assumes that you want to create a blank Android Studio project with a Firebase UI Login mechanism pre-integrated, and subsequently also integrate Chat SDK into it as well. If you are an advanced user or if you want to add the Chat SDK to an existing project, please use the manual here; NEED LINK!
 
 1. In Android Studio, Go to **File** -> **New** -> **Project**.
-2. Enter a name for the **Application** as you see fit. Change the **Company domain** to a relevant value for your organization. Be sure to note the **Application name**, the **Company domain**, and the **Package name**. You will need this information later. Click **Next**. Make sure the checkbox of Phone and Tablet is checked, then click **Next**. Click **Empty Activity**. Then call the Activity Name **MainActivity**, all the Layout Name **activity_main**, and make sure the two check boxes are clicked, and click **Finish**.
+
+2. Click on the **Phone and Tablet** tab. Click on the **Add No Activity** tab and click **Next**. Enter a name for the **Application** as you see fit. Change the **Name** of the application as you see fit. Be sure to note the **Application name** and the **Package name**. You will need this information later. NEED MINIMUM API LEVEL. Check the box of the Android X option, then click **Finish**.
+
 3. Open the top level `build.gradle` file. You can do this by clicking on the vertical **Project** tab in the upper left hand corner, then clicking on the horizontal **Project** option in the drop down menu beside it. ![Project and Project](https://github.com/thecmart/manuals/blob/master/Images/Project%20and%20Project.png)
+
 4. Click on the folder with the **name of your App**, then click on the ``build.gradle`` file. When you open it, the tab should have the name of your App. That’s how you know it’s the **project level** `build.gradle` file. It should have the name of your App when you open it. ![Top Level Build Gradle File](https://github.com/thecmart/manuals/blob/master/Images/Top%20Level%20Build%20Gradle%20File.png)
 
 5. Find the section of `dependencies` and add this code inside of it:
@@ -18,11 +21,22 @@
 
    Move your mouse over that line lines slowly, if android studio tells you that the version is outdated, enter the number of the latest version in place of the 4.2.0.
 
-8. Add this at the very end of the file: ```apply plugin: 'com.google.gms.google-services'```
+8. Find the following lines of code in the `dependencies` section: 
 
-9. Open the `activity_main.xml` file. You do this by going into the folder `app` on the left, then `src`, then `main`, then `res`, then `layout`, and finally click on `activity_main.xml`.
+       implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+       androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+       androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+   Move your mouse over them and update them to their most recent versions if needs be. These currently are:
 
-10. Click on the button `Text` in the middle of the screen, then erase all the code you see, and copy the following code into it:
+       implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
+       androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
+       androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.2-alpha01'
+
+9. Add this at the very end of the file: ```apply plugin: 'com.google.gms.google-services'```
+
+10. Open the `activity_main.xml` file. You do this by going into the folder `app` on the left, then `src`, then `main`, then `res`, then `layout`, and finally click on `activity_main.xml`.
+
+11. Click on the button `Text` in the middle of the screen, then erase all the code you see, and copy the following code into it:
 
    ```
     <?xml version="1.0" encoding="utf-8"?>

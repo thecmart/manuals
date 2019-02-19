@@ -18,11 +18,11 @@
 3. Add the following code to the **App Level** build.gradle file, in the section  `dependencies`:
 
    ```
-    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.4.4'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.4.4'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.4.8'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.4.8'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.1.35'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.4.8'
+       implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.4.4'
+       implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.4.8'
+       implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.4.8'
+       implementation 'co.chatsdk.chatsdk:chat-sdk-ui:4.4.8'
    ```
 
 4. Find the `android {    }` section of the file. Add this code inside of it, but not inside any of the other items inside of it:
@@ -101,7 +101,7 @@
 
 #### Run Chat SDK
 
-If you would like to launch Chat SDK from your app, run this line: ```ChatSDK.ui().startMainActivity```
+If you would like to launch Chat SDK from your app, run this line from your own class: ```ChatSDK.ui().startMainActivity```. If you would like to start the Chat SDK login activity from the `AndroidApp` `onCreate` method, add the line `ChatSDK.ui().startMainActivity(context);` to it, or you can use `ChatSDK.ui().startActivity(context, MyCustomActivity.class);`.
 
 #### Login using Chat SDK Login Screen
 

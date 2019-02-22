@@ -104,7 +104,7 @@ public class AppObject extends Application {
    ```
     android:name=".AppObject"
    ```
-​      If you gave the AppObject class a different name, enter that name instead.
+      If you gave the AppObject class a different name, enter that name instead.
 
 12. Currently, your `Android Manifest.xml` file should look something like this: 
 
@@ -124,7 +124,7 @@ public class AppObject extends Application {
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+    
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -142,3 +142,5 @@ public class AppObject extends Application {
 ### Conclusion
 
 Congratulations! 🎉🎉 You've just created you first App. Please see our next manual for instructions on how to add Chat SDK to it.
+
+   ```

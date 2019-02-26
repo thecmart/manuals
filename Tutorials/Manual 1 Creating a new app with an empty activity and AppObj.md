@@ -6,9 +6,9 @@
 
 2. Click on the **Phone and Tablet** tab. Click on the **Add Empty Activity** tab and click **Next**. Enter a name for the **Application** as you see fit. Change the **Name** of the application as you see fit. Be sure to note the **Application name** and the **Package name**. You will need this information later. Set the minimum API level to 16. Check the box of the Android X option, then click **Finish**.
 
-3. Open the top level `build.gradle` file. You can do this by clicking on the vertical **Project** tab in the upper left hand corner, then clicking on the horizontal **Project** option in the drop down menu beside it. ![Project and Project](https://github.com/thecmart/manuals/blob/Updates/Images/Project%20and%20Project.png)
+3. Open the top level `build.gradle` file. You can do this by clicking on the vertical **Project** tab in the upper left hand corner, then clicking on the horizontal **Project** option in the drop down menu beside it. ![Project and Project](https://www.dropbox.com/s/0kg9oiz9v8iftn2/Project%20and%20Project.png?dl=0)
 
-4. Click on the folder with the **name of your App**, then click on the `build.gradle` file. When you open it, the tab should have the name of your App. That’s how you know it’s the project level `build.gradle` file. It should have the name of your App when you open it. ![Top Level Build Gradle File](https://github.com/thecmart/manuals/blob/Updates/Images/Top%20Level%20Build%20Gradle%20File.png)
+4. Click on the folder with the **name of your App**, then click on the `build.gradle` file. When you open it, the tab should have the name of your App. That’s how you know it’s the project level `build.gradle` file. It should have the name of your App when you open it. ![Top Level Build Gradle File](https://www.dropbox.com/s/m5kqrqcex4fq5lj/Top%20Level%20Build%20Gradle%20File.png?dl=0)
 
 5. Find the section of `repositories` in `allprojects`, and add the following code inside of it:
 
@@ -87,6 +87,7 @@
 
    ```
     import android.app.Application;
+   ```
 
 public class AppObject extends Application {
 
@@ -95,6 +96,7 @@ public class AppObject extends Application {
         super.onCreate();
     }
 }
+
    ```
 
 10. If you have this class a different name than AppObject, you need to change the name of it in the line `public class AppObject extends Application` to whatever the name of the app is.
@@ -109,10 +111,11 @@ public class AppObject extends Application {
 12. Currently, your `Android Manifest.xml` file should look something like this: 
 
    ```
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.emptyapplication">
 
+    <?xml version="1.0" encoding="utf-8"?>
+    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.emptyapplication">
+    
     <application
         android:name=".AppObject"
         android:allowBackup="true"
@@ -129,15 +132,16 @@ public class AppObject extends Application {
             </intent-filter>
         </activity>
     </application>
+    
+    </manifest>
 
-</manifest>
    ```
 
-13. Now click on the button called **Sync Project with Gradle Files**. It should be at the top right hand corner, 5 buttons from the google account button. Ignore any messages telling you that the build failed.![Buttons](https://github.com/thecmart/manuals/blob/Updates/Images/Buttons2.png)
+13. Now click on the button called **Sync Project with Gradle Files**. It should be at the top right hand corner, 5 buttons from the google account button. Ignore any messages telling you that the build failed.![Buttons](https://www.dropbox.com/s/kf97cfn3tk2u05c/Buttons2.png?dl=0)
 
 14. You can now run your app. You can either plug your smartphone into your computer, or choose to use an emulator. Click on **Run** -> **Run App** and choose either an emulator or your plugged in phone. If you have neither you can download an emulator by going to **Tools** -> **AVD Manager**. Pick a device and click **OK**. Ignore any messages you get containing warnings. When the screen shown below appears, your app is now running.
 
-     ![Running App](https://github.com/thecmart/manuals/blob/Updates/Images/Running%20App.png)
+     ![Running App](https://www.dropbox.com/s/3d6o0m95lzbilid/Running%20App.png?dl=0)
 
 ### Conclusion
 

@@ -2,7 +2,7 @@
 
 ###### This is the second instruction manual in our series. It assumes that you have followed our Manual 1  and have create a functioning app, or have a functioning app in any case. If not, you can follow the instructions in Manual 1 here; NEED LINK!
 
-1. Open Android Studio and open your project. If Android Studio is not connected to Google, click on the Google sign in button located at the top left hand corner and sign in to Google. ![Buttons](https://www.dropbox.com/s/kf97cfn3tk2u05c/Buttons2.png?dl=0)
+1. Open Android Studio and open your project. If Android Studio is not connected to Google, click on the Google sign in button located at the top left hand corner and sign in to Google. ![Buttons](https://www.dropbox.com/s/kf97cfn3tk2u05c/Buttons2.png)
 
 2. Go to the `dependencies ` area of the top level `build.gradle` file and add this line:
 

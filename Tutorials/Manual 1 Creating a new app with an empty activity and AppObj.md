@@ -102,7 +102,11 @@
 
 10. If you have this class a different name than AppObject, you need to change the name of it in the line `public class AppObject extends Application` to whatever the name of the app is.
 
-11. Open your `AndroidManifest.xml` file, it should be in the "main" folder. Add this code to the `<application` section: ```android:name=".AppObject"```
+11. Open your `AndroidManifest.xml` file, it should be in the "main" folder. Add this code to the `<application` section:
+
+   ```
+    android:name=".AppObject"
+   ```
 
    If you gave the AppObject class a different name, enter that name instead.
 
@@ -131,6 +135,7 @@
     </application>
     
     </manifest>
+
    ```
 
 13. Now click on the button called **Sync Project with Gradle Files**. It should be at the top right hand corner, 5 buttons from the google account button. Ignore any messages telling you that the build failed.![Buttons](https://previews.dropbox.com/p/thumb/AAWsTz-wgsIUocl-0_qIHSGw9E9kMva8RS43IFS2i8ntyUCEjYrYpk35V6N9B53rMsTAfGy0kJSdAp21VcBVa2lzWEskvCO9s19elzORDS9KwmCLjPbmc1oDKm_DJTm-_Ko4Klud7PcfZLd3BtBNCppCaf7-6U593L32oOVqXnqBwHRp4C6AbbsuoLD-ygkhEpq6_8O3I-BAGo-facibj_hl7zelZ2BsHkde6TQwc_kJ1A/p.png?size_mode=5)
@@ -140,4 +145,4 @@
 
 ### Conclusion
 
-Congratulations! ???? You've just created you first App. Please see our next manual for instructions on how to add Chat SDK to it.
+Congratulations! 🎉🎉 You've just created you first App. Please see our next manual for instructions on how to link it to Firebase.

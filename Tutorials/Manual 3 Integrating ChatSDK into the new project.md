@@ -1,6 +1,6 @@
 ### Manual 3: Adding Chat SDK to your project
 
-###### This is the third instruction manual in our series. It assumes that you have followed our Manuals 1 and 2, and have create a functioning app, or have a functioning app in any case. If not, you can follow the instructions in Manual 1 here; NEED LINK! Manual 2 here;
+###### This is the third instruction manual in our series. It assumes that you have followed our Manuals 1 and 2, and have create a functioning app, or have a functioning app in any case. If not, you can follow the instructions in Manual 1 here: [Manual 1](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%201%20Creating%20a%20new%20app%20with%20an%20empty%20activity%20and%20AppObj.md) Manual 2 here: [Manual 2](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%202%20Linking%20an%20app%20to%20firebase.md)
 
 1. Open Android Studio and open your project.
 
@@ -171,4 +171,4 @@
 
 ### Conclusion
 
-Congratulations! 🎉🎉 You've just turned your app into a fully featured instant messenger! Keep reading our other manuals to learn how to further customize the Chat SDK as well as add various other modules as needed. Please see our next manual to see how to add a firebase UI login function to your app.
+Congratulations! 🎉🎉 You've just turned your app into a fully featured instant messenger! Keep reading our other manuals to learn how to further customize the Chat SDK as well as add various other modules as needed. Please see our next manual to see how to add a firebase UI login function to your app here: [Manual 4](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%204%20Creating%20a%20firebase%20UI%20login%20for%20you%20app.md)

@@ -1,6 +1,6 @@
 ### Manual 2: Linking an existing project with Firebase
 
-###### This is the second instruction manual in our series. It assumes that you have followed our Manual 1  and have create a functioning app, or have a functioning app in any case. If not, you can follow the instructions in Manual 1 here; NEED LINK!
+###### This is the second instruction manual in our series. It assumes that you have followed our Manual 1  and have create a functioning app, or have a functioning app in any case. If not, you can follow the instructions in Manual 1 here: [Manual 1](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%201%20Creating%20a%20new%20app%20with%20an%20empty%20activity%20and%20AppObj.md)
 
 1. Open Android Studio and open your project. If Android Studio is not connected to Google, click on the Google sign in button located at the top left hand corner and sign in to Google. ![Buttons](https://github.com/thecmart/manuals/blob/master/Images/Buttons2.png)
 
@@ -29,4 +29,4 @@
 
 ### Conclusion
 
-Congratulations! 🎉🎉 You've just linked your app to firebase. Please see our next manual for instructions on how to add Chat SDK to it.
+Congratulations! 🎉🎉 You've just linked your app to firebase. Please see our next manual for instructions on how to add Chat SDK to it here: [Manual 3](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%203%20Integrating%20ChatSDK%20into%20the%20new%20project.md)

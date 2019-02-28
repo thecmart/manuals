@@ -1,6 +1,6 @@
 ### Creating a new empty Project
 
-###### Quick start guide - it takes about 10 minutes! This instruction manual assumes that you are a beginner at using Android Studio and assumes that you want to create a new empty project. If you are an advanced user and want to add Chat SDK to an existing project, please view our manual 3 here:
+###### Quick start guide - it takes about 10 minutes! This instruction manual assumes that you are a beginner at using Android Studio and assumes that you want to create a new empty project. If you are an advanced user and want to add Chat SDK to an existing project, please view our manual 3 here: [Manual 3](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%203%20Integrating%20ChatSDK%20into%20the%20new%20project.md)
 
 1. In Android Studio, go to **File** -> **New** -> **Project**.
 
@@ -132,11 +132,11 @@
                     <action android:name="android.intent.action.MAIN" />
                     
                     <category android:name="android.intent.category.LAUNCHER" />
-                    </intent-filter>
-                    </activity>
-                    </application>
+                </intent-filter>
+            </activity>
+        </application>
                     
-                    </manifest>
+        </manifest>
     ```
 
 13. Now click on the button called **Sync Project with Gradle Files**. It should be at the top right hand corner, 5 buttons from the google account button. Ignore any messages telling you that the build failed.![Buttons](https://github.com/thecmart/manuals/blob/master/Images/Buttons2.png)
@@ -145,5 +145,5 @@
 
 ### Conclusion
 
-Congratulations! 🎉🎉 You've just created you first App. Please see our next manual for instructions on how to link it to Firebase.
+Congratulations! 🎉🎉 You've just created you first App. Please see our next manual for instructions on how to link it to Firebase here: [Manual 2](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%202%20Linking%20an%20app%20to%20firebase.md)
 

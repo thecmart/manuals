@@ -116,6 +116,7 @@
 
     ```
     <?xml version="1.0" encoding="utf-8"?>
+
         <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="com.example.emptyapplication">
         
@@ -138,6 +139,7 @@
                     
         </manifest>
     ```
+
 
 13. Now click on the button called **Sync Project with Gradle Files**. It should be at the top right hand corner, 5 buttons from the google account button. Ignore any messages telling you that the build failed.![Buttons](https://github.com/thecmart/manuals/blob/master/Images/Buttons2.png)
 

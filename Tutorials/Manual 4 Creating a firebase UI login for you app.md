@@ -1,6 +1,6 @@
 ### Manual 4: Adding The firebase UI login to your project
 
-###### This is the fourth instruction manual in our series. It assumes that you have followed our Manuals 1 to 3, and have create a functioning app with Chat SDK integrated. If not, you can follow the instructions in Manual 1 here; NEED LINK! Manual 2 here; NEED LINK! and Manual 3 here; NEED LINK!
+###### This is the fourth instruction manual in our series. It assumes that you have followed our Manuals 1 to 3, and have create a functioning app with Chat SDK integrated. If not, you can follow the instructions in Manual 1 here: [Manual 1](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%201%20Creating%20a%20new%20app%20with%20an%20empty%20activity%20and%20AppObj.md) Manual 2 here: [Manual 2](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%202%20Linking%20an%20app%20to%20firebase.md) and Manual 3 here: [Manual 3](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%203%20Integrating%20ChatSDK%20into%20the%20new%20project.md)
 
 1. Open Android Studio and open your project.
 
@@ -188,4 +188,4 @@
 
 ### Conclusion
 
-Congratulations! 🎉🎉 You've just created you first App with Firebase UI Login. Please read our other manuals to learn how to further customize the Chat SDK as well as add various other modules as needed.
+Congratulations! 🎉🎉 You've just created you first App with Firebase UI Login. Please read our other manuals to learn how to further customize the Chat SDK as well as add various other modules as needed here: [Modules](https://github.com/chat-sdk/chat-sdk-android#module-setup)

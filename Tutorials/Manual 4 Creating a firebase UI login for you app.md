@@ -10,7 +10,7 @@
 
    ```
     <?xml version="1.0" encoding="utf-8"?>
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
@@ -32,7 +32,7 @@
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
    ```
 
 4. Open the folder that says ```values```, open the ```strings.xml``` file and add this to the resources:    ```<string name="login_button_text">Login With Firebase UI</string>```
@@ -44,6 +44,7 @@
    import com.firebase.ui.auth.ErrorCodes;
    import com.firebase.ui.auth.IdpResponse;
    import com.google.firebase.FirebaseApp;
+   import android.view.View;
    ```
 
 6. Next, add this line below the line: `public class MainActivity extends AppCompatActivity {`

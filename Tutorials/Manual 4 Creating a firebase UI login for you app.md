@@ -1,6 +1,6 @@
 ### Manual 4: Adding The firebase UI login to your project
 
-###### This is the fourth instruction manual in our series. It assumes that you have followed our Manuals 1 to 3, and have create a functioning app with Chat SDK integrated. If not, you can follow the instructions in Manual 1 here: [Manual 1](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%201%20Creating%20a%20new%20app%20with%20an%20empty%20activity%20and%20AppObj.md) Manual 2 here: [Manual 2](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%202%20Linking%20an%20app%20to%20firebase.md) and Manual 3 here: [Manual 3](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%203%20Integrating%20ChatSDK%20into%20the%20new%20project.md)
+###### This is the fourth instruction manual in our series. It assumes that you have followed our Manuals 1 to 3, and have create a functioning app with Chat SDK integrated. If not, you can follow the instructions [Manual 1](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%201%20Creating%20a%20new%20app%20with%20an%20empty%20activity%20and%20AppObj.md), [Manual 2](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%202%20Linking%20an%20app%20to%20firebase.md) and Manual 3 and [Manual 3](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%203%20Integrating%20ChatSDK%20into%20the%20new%20project.md)
 
 1. Open Android Studio and open your project.
 
@@ -34,8 +34,10 @@
           app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
    ```
+   
+   This code will add a button to the Activity. When we click the button, we will start the Firebase UI login process. 
 
-4. Open the folder that says ```values```, open the ```strings.xml``` file and add this to the resources:    ```<string name="login_button_text">Login With Firebase UI</string>```
+4. Open the folder that says `values`, open the `strings.xml` file and add this to the resources: `<string name="login_button_text">Login With Firebase UI</string>`
 
 5. Add this code in the `import` section of the `MainActivity` class:
 
@@ -52,8 +54,10 @@
    ```
    Button signInButton;
    public static final int RC_SIGN_IN = 900;
-   protected ProgressDialog progressDialog;.
+   protected ProgressDialog progressDialog;
    ```
+   
+   Here we setup the properties we will need to use later on. 
 
 7. Then add these two lines inside of the `onCreate` method: 
 
@@ -61,131 +65,86 @@
    FirebaseApp.initializeApp(this);
    signInButton = (Button) findViewById(R.id.button);
    ```
+   
+   In the first line we are starting up Firebase and in the second line we are finding the button we defined in the `xml` file and assigning that button to the `signInButton` variable we created earlier. 
 
-8. Now enter this code outside of the `onCreate` method:
+8. Now we're going to actually use Firebase UI to authenticate with Firebase. Add the following function: 
 
-   ```
-   @Override
-   protected void onResume() {
-       super.onResume();
-       authenticateWithCachedToken();
-   }
+  ```
+  public void startAuthenticationActivity () {
    
-   protected void authenticateWithCachedToken () {
-           showProgressDialog(getString(chatsdk.co.chat_sdk_firebase_ui.R.string.a uthenticating));
-       signInButton.setEnabled(false);
-       ChatSDK.auth().authenticateWithCachedToken()
-               .observeOn(AndroidSchedulers.mainThread())
-               .doFinally(() -> {
-                   signInButton.setEnabled(true);
-                   //dismissProgressDialog();
-               })
-               .subscribe(() -> {
-                   ChatSDK.ui().startMainActivity(MainActivity.this);
-               }, throwable -> {
-   
-                    startAuthenticationActivity();
-                   });
-       }
-   
-   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-       super.onActivityResult(requestCode, resultCode, data);
-       // RC_SIGN_IN is the request code you passed into  startActivityForResult(...) when starting the sign in flow.
-       if (requestCode == RC_SIGN_IN) {
-           IdpResponse response = IdpResponse.fromResultIntent(data);
-   
-           // Successfully signed in
-           if (resultCode == RESULT_OK) {
-               return;
-           }
-           else {
-   
-               // Sign in failed
-               if (response == null) {
-                   // User pressed back button
-                   ToastHelper.show(this, chatsdk.co.chat_sdk_firebase_ui.R.string.sign_in_cancelled);
-                   return;
-               }
-   
-               if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
-                   ToastHelper.show(this, chatsdk.co.chat_sdk_firebase_ui.R.string.no_internet_connection);
-                   return;
-               }
-   
-               if (response.getError().getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
-                   ToastHelper.show(this, chatsdk.co.chat_sdk_firebase_ui.R.string.unknown_error);
-                   return;
-               }
-           }
-           ToastHelper.show(this, chatsdk.co.chat_sdk_firebase_ui.R.string.unknown_sign_in_response);
-   
-            finish();
-           }
-       }
-   
-   
-   /** Show a SuperToast with the given text. */
-   protected void showToast(String text){
-       if (StringUtils.isEmpty(text))
-           return;
-   
-       ToastHelper.show(this, text);
-   }
-   
-   protected void showProgressDialog(String message) {
-       if (progressDialog == null) {
-           progressDialog = new ProgressDialog(this);
-       }
-   
-       if (!progressDialog.isShowing()) {
-           progressDialog = new ProgressDialog(this);
-           progressDialog.setMessage(message);
-           progressDialog.show();
-       }
-   }
-   
-   protected void showOrUpdateProgressDialog(String message) {
-       if (progressDialog == null) {
-           progressDialog = new ProgressDialog(this);
-       }
-   
-       if (!progressDialog.isShowing()) {
-           progressDialog = new ProgressDialog(this);
-           progressDialog.setMessage(message);
-           progressDialog.show();
-       } else progressDialog.setMessage(message);
-   }
-   
-   protected void dismissProgressDialog() {
-       // For handling orientation changed.
-       try {
-           if (progressDialog != null && progressDialog.isShowing()) {
-               progressDialog.dismiss();
-           }
-       } catch (Exception e) {
-           ChatSDK.logError(e);
-       }
-   }
-    public void startAuthenticationActivity () {
-   
-      ArrayList<AuthUI.IdpConfig> idps = new ArrayList<>();
+     ArrayList<AuthUI.IdpConfig> idps = new ArrayList<>();
             
-      idps.add(new AuthUI.IdpConfig.EmailBuilder().build());
+     idps.add(new AuthUI.IdpConfig.EmailBuilder().build());
             
-      startActivityForResult(
-              AuthUI.getInstance()
-                      .createSignInIntentBuilder()
-                      .setAvailableProviders(idps)
-                      .build(),
-              RC_SIGN_IN);
-   }
-            
-   public void login_click (View v) {
-      startAuthenticationActivity();
+     startActivityForResult(
+             AuthUI.getInstance()
+                     .createSignInIntentBuilder()
+                     .setAvailableProviders(idps)
+                     .build(),
+             RC_SIGN_IN);
    }
    ```
+   
+   In this function we are first defining a list of the sign in methods we want Firebase UI to provide. Then we pass this list to the Firebase Auth UI object to build an activity that will allow us to sign in. Then we launch that activity. 
+   
+9. Now we need to handle that activity when it returns:
 
-9. Click on the Gradle Sync button.
+  ```
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+     super.onActivityResult(requestCode, resultCode, data);
+     
+     // RC_SIGN_IN is the request code you passed into  startActivityForResult(...) when starting the sign in flow.
+     if (requestCode == RC_SIGN_IN) {
+        IdpResponse response = IdpResponse.fromResultIntent(data);
+   
+        // Successfully signed in
+        if (resultCode == RESULT_OK) {
+           // Success
+        }
+        else {
+           // Handle Error
+        }
+     }
+  }
+  ```
+  
+10. Now we're going to call the authentication method when the user clicks the button:
+  
+  ```
+  public void login_click (View v) {
+     startAuthenticationActivity();
+  }
+  ```
+  
+11. Conceptually two steps are involved with starting the Chat SDK. The first step is to authenticate with Firebase. The second step is for the Chat SDK to connect to Firebase and initialize the messenger. To do this, we can call the `authenticate` method. 
+
+  ```
+  @Override
+  protected void onResume() {
+     super.onResume();
+     authenticateWithCachedToken();
+  }
+   
+  protected void authenticateWithCachedToken () {
+     signInButton.setEnabled(false);
+     
+     ChatSDK.auth().authenticate()
+             .observeOn(AndroidSchedulers.mainThread())
+             .doFinally(() -> {
+                 signInButton.setEnabled(true);
+             })
+             .subscribe(() -> {
+                 ChatSDK.ui().startMainActivity(MainActivity.this);
+             }, throwable -> {
+                 // Setup failed
+             });
+     }
+  ```
+  
+  This method will be called whenever the `MainActivity` resumes. It will check to see if we're authenticated with Firebase and if so, it will try to connect the Chat SDK to Firebase. If not, the fail block will be called. If it succeeds, it will launch the Chat SDK main activity. 
+
+12. Click on the Gradle Sync button.
 
 ### Conclusion
 

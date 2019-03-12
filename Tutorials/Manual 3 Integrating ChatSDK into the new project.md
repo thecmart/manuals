@@ -1,6 +1,6 @@
 ### Manual 3: Adding Chat SDK to your project
 
-###### This is the third instruction manual in our series. It assumes that you have followed our Manuals 1 and 2, and have create a functioning app, or have a functioning app in any case. If not, you can follow the instructions in Manual 1 here: [Manual 1](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%201%20Creating%20a%20new%20app%20with%20an%20empty%20activity%20and%20AppObj.md) Manual 2 here: [Manual 2](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%202%20Linking%20an%20app%20to%20firebase.md)
+###### This is the third instruction manual in our series. It assumes that you have followed our [Manual 1](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%201%20Creating%20a%20new%20app%20with%20an%20empty%20activity%20and%20AppObj.md) and [Manual 2](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%202%20Linking%20an%20app%20to%20firebase.md), and have create a functioning app, or have a functioning app in any case. 
 
 1. Open Android Studio and open your project.
 
@@ -23,58 +23,54 @@
 
 4. Move your mouse over these lines slowly, if android studio tells you that these versions are outdated, enter the number of the latest version in the appropriate line in place of the number of the latest version.
 
-5. Now you need to create a new class if you do not already have it. Under the **app** folder on the left, click on **src**, then on "main, and then on **java**. Under **java** there should  be a folder with the package name. Right click on it, then go to **new** and click on **Java Class**. Call the class "AppObject" and under the label Superclass, write "Application". In the body of the class, erase all text **except for the first line.** This would normally be `package PACKAGE NAME;`and copy this code into it:
+5. Now you need to create a new `Application` class if you do not already have it. Under the **app** folder on the left, click on **src**, then on **main**, and then on **java**. Under **java** there should  be a folder with the package name. Right click on it, then go to **new** and click on **Java Class**. Call the class "AppObject" and under the label `superclass`, write "Application". In the body of the class, erase all text **except for the first line.** This would normally be `package PACKAGE NAME;` 
 
-   ```
-    import android.app.Application;
-    import android.content.Context;
-       
-    import co.chatsdk.core.error.ChatSDKException;
-    import co.chatsdk.core.session.ChatSDK;
-    import co.chatsdk.core.session.Configuration;
-    import co.chatsdk.firebase.FirebaseNetworkAdapter;
-    import co.chatsdk.firebase.file_storage.FirebaseFileStorageModule;
-    import co.chatsdk.firebase.push.FirebasePushModule;
-    import co.chatsdk.ui.manager.BaseInterfaceAdapter;
-    
-    public class AppObject extends Application {
-    
-    @Override
-    public void onCreate() {
-        super.onCreate();
-    
-        Context context = getApplicationContext();
+  First we're going to override the `onCreate` method. To do that, add the following to your class:
+  
+  ```
+  @Override
+  public void onCreate() {
+     super.onCreate();
+     
+  }
+  ```
+  
+  The `onCreate` method is called when the app first launches and is the best place to setup the Chat SDK. 
+  
+  Then add the following code to this method:
+  
+  ```
+  // The Chat SDK needs access to the application's context
+  Context context = getApplicationContext();
    
-   // Create a new configuration
-        Configuration.Builder config = new        Configuration.Builder(context);
-   
-   // Perform any configuration steps (optional)
-        config.firebaseRootPath("prod");
-   
-   // Initialize the Chat SDK
-        try {
-            ChatSDK.initialize(config.build(), new        BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
-        }
-        catch (ChatSDKException e) {
-        }
-   
-   // File storage is needed for profile image upload and image messages
-        FirebaseFileStorageModule.activate();
-        FirebasePushModule.activate();
-   
-   // Activate any other modules you need.
-   // ...
-   
-     }
-    }
-   
-   ```
+  // Initialize the Chat SDK
+  // Pass in 
+  try {
 
-6. If you have this class a different name than AppObject, you need to change the name of it in the line `public class AndroidApp extends Application` to whatever the name of the app is.
+     // The configuration object contains all the Chat SDK settings. If you want to see a full list of the settings
+     // you should look inside the `Configuration` object (CMD+Click it in Android Studio) then you can see every
+     // setting and the accompanying comment
+     Configuration.Builder config = new Configuration.Builder(context);
+   
+     // Perform any configuration steps
+     // The root path is an optional setting that allows you to run multiple Chat SDK instances on one Realtime database. 
+     // For example, you could have one root path for "test" and another for "production"
+     config.firebaseRootPath("prod");
 
-7. If you have not done this already, Open your `AndroidManifest.xml` file, it should be in the "main" folder. Add this code to the `<application` section: `android:name="AppObject"`. If you gave the AppObject class a different name, enter that name instead.
+     // Start the Chat SDK and pass in the interface adapter and network adapter. By subclassing either
+     // of these classes you could modify deep functionality withing the Chat SDK 
+     ChatSDK.initialize(config.build(), new BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
+  }
+     catch (ChatSDKException e) {
+  }
+   
+  // File storage is needed for profile image upload and image messages
+  FirebaseFileStorageModule.activate();
+  ```
 
-8. Add the following code to the `AndroidManifest.xml` file to launch Chat SDK upon the starting of the app:
+6. If you have not done this already, Open your `AndroidManifest.xml` file, it should be in the "main" folder. Add this code to the `<application` section: `android:name="AppObject"`. If you gave the AppObject class a different name, enter that name instead. This will tell Android which class to load up when the app starts. 
+
+7. Add the following code to the `AndroidManifest.xml` file to launch Chat SDK upon the starting of the app:
 
    ```
     <activity android:name="co.chatsdk.ui.login.LoginActivity">
@@ -85,7 +81,7 @@
     </activity>
    ```
 
-9. Alternatively, the Chat SDK login screen can be triggered by this line:
+9. Alternatively, the Chat SDK login screen can be triggered by adding this line to the end of your `onCreate` method:
 
    ```
    InterfaceManager.shared().a.startLoginActivity(context, true);
@@ -93,9 +89,11 @@
 
 10. Go back to your [Firebase Console](https://console.firebase.google.com/) , click on your app, click on **Database**. Scroll down to where it says **Realtime Database** and click on **Create database**. Start in locked mode and click **Enable**. Click the **Rules** tab. Delete everything in the box, then go to this [rules.json](https://github.com/chat-sdk/chat-sdk-android/blob/master/firebase-rules.json) file, copy everything in the box (approximately 355 lines), and paste it into the box in the firebase console. Click on **Publish**.
 
-11. This concludes initial setup of your project. If you would like for your app to have the ability to handle push notifications or handle location based messages, please follow the instructions below.
+11. Go back to the Firebase Console and click **Storage** on the left hand side. Then click **Get Started** click **Got it**. Now file storage is activated and the Chat SDK will be able to save user profile pictures and send image messages. 
 
-12. Now we need to configure the app to be able to handle push notifications.
+12. This concludes initial setup of your project. If you would like for your app to have the ability to handle push notifications or handle location messages, please follow the instructions below.
+
+13. Now we need to configure the app to be able to handle push notifications.
 
 ### Push Notifications
 
@@ -137,13 +135,13 @@
 
 17. Now click on the button called **Sync Project with Gradle Files**. It should be at the top left hand corner, 5 buttons from the google account button. When the gradle sync completes, this section will be completed. Now we need to configure your app to handle location based messages.
 
-### Enabling location based messages
+### Enabling location messages
 
-1. If you would like for your app to be able to receive messages based on the location of the user's device, then you need to activate location based messages. The Chat SDK needs two google services to support location messages. The [Google Places API](https://developers.google.com/places/) to select the location and the [Google Static Maps API](https://developers.google.com/maps/documentation/static-maps/) to display the location.
+1. If you would like for your app to be able to receive messages based on the location of the user's device, then you need to activate location messages. The Chat SDK needs two google services to support location messages. The [Google Places API](https://developers.google.com/places/) to select the location and the [Google Static Maps API](https://developers.google.com/maps/documentation/static-maps/) to display the location.
 
 2. Go to the [Google Places API](https://developers.google.com/places/) page, click **Get Started**, then click **Places**, and then click **Continue**.
 
-3. After this you select your Project from the drop down lit and click **Next**. Then **QUICKLY** click on **Create a billing Account** when the dialog box pops up. If you miss it, simply repeat steps 1 and 2. In order to do this you will need a billing account. If you want to do that, then continue, otherwise disable location messages by placing this text into the AndroidApp's `Oncreate` method:
+3. After this you select your Project from the drop down lit and click **Next**. Then **QUICKLY** click on **Create a billing Account** when the dialog box pops up. If you miss it, simply repeat steps 1 and 2. In order to do this you will need a billing account. If you want to do that, then continue, otherwise disable location messages by placing this text into the AndroidApp's `onCreate` method:
 
    ```
     config.locationMessagesEnabled(false);
@@ -155,7 +153,7 @@
 
 5. Although you need to setup billing, Google give you 200 USD per month for free. So you can load 10 million free location messages for free per month.
 
-6. Go back to Android Studio, Add this line to the `oncreate` method of the AndroidApp:
+6. Go back to Android Studio, Add this line to the `onCreate` method of the AndroidApp:
 
    ```
     config.googleMaps("YOUR GOOGLE PLACES API KEY");

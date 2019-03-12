@@ -70,23 +70,23 @@
 
 8. Now we're going to actually use Firebase UI to authenticate with Firebase. Add the following function: 
 
-  ```
-  public void startAuthenticationActivity () {
+   ```
+   public void startAuthenticationActivity () {
    
-     ArrayList<AuthUI.IdpConfig> idps = new ArrayList<>();
+      ArrayList<AuthUI.IdpConfig> idps = new ArrayList<>();
             
-     idps.add(new AuthUI.IdpConfig.EmailBuilder().build());
+      idps.add(new AuthUI.IdpConfig.EmailBuilder().build());
             
-     startActivityForResult(
+      startActivityForResult(
              AuthUI.getInstance()
                      .createSignInIntentBuilder()
                      .setAvailableProviders(idps)
                      .build(),
              RC_SIGN_IN);
-   }
-   ```
+    }
+    ```
    
-   In this function we are first defining a list of the sign in methods we want Firebase UI to provide. Then we pass this list to the Firebase Auth UI object to build an activity that will allow us to sign in. Then we launch that activity. 
+    In this function we are first defining a list of the sign in methods we want Firebase UI to provide. Then we pass this list to the Firebase Auth UI object to build an activity that will allow us to sign in. Then we launch that activity. 
    
 9. Now we need to handle that activity when it returns:
 

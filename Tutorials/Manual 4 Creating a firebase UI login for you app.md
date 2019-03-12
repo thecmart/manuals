@@ -90,59 +90,59 @@
    
 9. Now we need to handle that activity when it returns:
 
-  ```
-  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-     super.onActivityResult(requestCode, resultCode, data);
+   ```
+   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+      super.onActivityResult(requestCode, resultCode, data);
      
-     // RC_SIGN_IN is the request code you passed into  startActivityForResult(...) when starting the sign in flow.
-     if (requestCode == RC_SIGN_IN) {
-        IdpResponse response = IdpResponse.fromResultIntent(data);
+      // RC_SIGN_IN is the request code you passed into  startActivityForResult(...) when starting the sign in flow.
+      if (requestCode == RC_SIGN_IN) {
+         IdpResponse response = IdpResponse.fromResultIntent(data);
    
-        // Successfully signed in
-        if (resultCode == RESULT_OK) {
-           // Success
-        }
-        else {
-           // Handle Error
-        }
-     }
-  }
-  ```
+         // Successfully signed in
+         if (resultCode == RESULT_OK) {
+            // Success
+         }
+         else {
+            // Handle Error
+         }
+      }
+   }
+   ```
   
 10. Now we're going to call the authentication method when the user clicks the button:
   
-  ```
-  public void login_click (View v) {
-     startAuthenticationActivity();
-  }
-  ```
+   ```
+   public void login_click (View v) {
+      startAuthenticationActivity();
+   }
+   ```
   
 11. Conceptually two steps are involved with starting the Chat SDK. The first step is to authenticate with Firebase. The second step is for the Chat SDK to connect to Firebase and initialize the messenger. To do this, we can call the `authenticate` method. 
 
-  ```
-  @Override
-  protected void onResume() {
-     super.onResume();
-     authenticateWithCachedToken();
-  }
-   
-  protected void authenticateWithCachedToken () {
-     signInButton.setEnabled(false);
-     
-     ChatSDK.auth().authenticate()
-             .observeOn(AndroidSchedulers.mainThread())
-             .doFinally(() -> {
-                 signInButton.setEnabled(true);
-             })
-             .subscribe(() -> {
-                 ChatSDK.ui().startMainActivity(MainActivity.this);
-             }, throwable -> {
-                 // Setup failed
-             });
-     }
-  ```
+   ```
+   @Override
+   protected void onResume() {
+      super.onResume();
+      authenticateWithCachedToken();
+   }
+    
+   protected void authenticateWithCachedToken () {
+      signInButton.setEnabled(false);
+      
+      ChatSDK.auth().authenticate()
+              .observeOn(AndroidSchedulers.mainThread())
+              .doFinally(() -> {
+                  signInButton.setEnabled(true);
+              })
+              .subscribe(() -> {
+                  ChatSDK.ui().startMainActivity(MainActivity.this);
+              }, throwable -> {
+                  // Setup failed
+              });
+      }
+   ```
   
-  This method will be called whenever the `MainActivity` resumes. It will check to see if we're authenticated with Firebase and if so, it will try to connect the Chat SDK to Firebase. If not, the fail block will be called. If it succeeds, it will launch the Chat SDK main activity. 
+   This method will be called whenever the `MainActivity` resumes. It will check to see if we're authenticated with Firebase and if so, it will try to connect the Chat SDK to Firebase. If not, the fail block will be called. If it succeeds, it will launch the Chat SDK main activity. 
 
 12. Click on the Gradle Sync button.
 

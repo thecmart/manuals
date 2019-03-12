@@ -85,9 +85,9 @@
              RC_SIGN_IN);
     }
     ```
-   
-    In this function we are first defining a list of the sign in methods we want Firebase UI to provide. Then we pass this list to the Firebase Auth UI object to build an activity that will allow us to sign in. Then we launch that activity. 
-   
+
+   In this function we are first defining a list of the sign in methods we want Firebase UI to provide. Then we pass this list to the Firebase Auth UI object to build an activity that will allow us to sign in. Then we launch that activity. 
+
 9. Now we need to handle that activity when it returns:
 
    ```
@@ -108,7 +108,7 @@
       }
    }
    ```
-  
+
 10. Now we're going to call the authentication method when the user clicks the button:
 
    ```

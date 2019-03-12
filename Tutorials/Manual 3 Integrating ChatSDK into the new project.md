@@ -26,7 +26,7 @@
 5. Now you need to create a new `Application` class if you do not already have it. Under the **app** folder on the left, click on **src**, then on **main**, and then on **java**. Under **java** there should  be a folder with the package name. Right click on it, then go to **new** and click on **Java Class**. Call the class "AppObject" and under the label `superclass`, write "Application". In the body of the class, erase all text **except for the first line.** This would normally be `package PACKAGE NAME;` 
 
   First we're going to override the `onCreate` method. To do that, add the following to your class:
-  
+
   ```
   @Override
   public void onCreate() {
@@ -34,11 +34,11 @@
      
   }
   ```
-  
+
   The `onCreate` method is called when the app first launches and is the best place to setup the Chat SDK. 
-  
+
   Then add the following code to this method:
-  
+
   ```
   // The Chat SDK needs access to the application's context
   Context context = getApplicationContext();
@@ -169,4 +169,4 @@
 
 ### Conclusion
 
-Congratulations! 🎉🎉 You've just turned your app into a fully featured instant messenger! Keep reading our other manuals to learn how to further customize the Chat SDK as well as add various other modules as needed. Please see our next manual to see how to add a firebase UI login function to your app here: [Manual 4](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%204%20Creating%20a%20firebase%20UI%20login%20for%20you%20app.md)
+Congratulations! 🎉🎉 You've just turned your app into a fully featured instant messenger! Keep reading our other manuals to learn how to further customize the Chat SDK as well as add various other modules as needed. Please see our next manual to see how to add a firebase UI login function to your app here: [Manual 4](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%204%20Creating%20a%20firebase%20UI%20login%20for%20you%20app.md). You can also download the project as described above here: [Project 3](https://github.com/thecmart/BlankApp/tree/Manual3)

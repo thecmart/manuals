@@ -147,5 +147,5 @@
 
 ### Conclusion
 
-Congratulations! 🎉🎉 You've just created you first App. Please see our next manual for instructions on how to link it to Firebase here: [Manual 2](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%202%20Linking%20an%20app%20to%20firebase.md)
+Congratulations! 🎉🎉 You've just created you first App. Please see our next manual for instructions on how to link it to Firebase here: [Manual 2](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%202%20Linking%20an%20app%20to%20firebase.md). You can also download a blank project as described above here: [Project 1](https://github.com/thecmart/BlankApp)
 

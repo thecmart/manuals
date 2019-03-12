@@ -84,7 +84,7 @@
                      .build(),
              RC_SIGN_IN);
     }
-    ```
+   ```
 
    In this function we are first defining a list of the sign in methods we want Firebase UI to provide. Then we pass this list to the Firebase Auth UI object to build an activity that will allow us to sign in. Then we launch that activity. 
 
@@ -148,4 +148,4 @@
 
 ### Conclusion
 
-Congratulations! 🎉🎉 You've just created you first App with Firebase UI Login. Please read our other manuals to learn how to further customize the Chat SDK as well as add various other modules as needed here: [Modules](https://github.com/chat-sdk/chat-sdk-android#module-setup)
+Congratulations! 🎉🎉 You've just created you first App with Firebase UI Login. Please read our other manuals to learn how to further customize the Chat SDK as well as add various other modules as needed here: [Modules](https://github.com/chat-sdk/chat-sdk-android#module-setup). You can also download the project as described above here: [Project 4](https://github.com/thecmart/BlankApp/tree/Manual4)

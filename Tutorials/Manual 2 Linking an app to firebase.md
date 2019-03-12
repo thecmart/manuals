@@ -26,4 +26,4 @@
 
 ### Conclusion
 
-Congratulations! 🎉🎉 You've just linked your app to Firebase. Please see our next manual for instructions on how to add Chat SDK to it here: [Manual 3](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%203%20Integrating%20ChatSDK%20into%20the%20new%20project.md)
+Congratulations! 🎉🎉 You've just linked your app to Firebase. Please see our next manual for instructions on how to add Chat SDK to it here: [Manual 3](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%203%20Integrating%20ChatSDK%20into%20the%20new%20project.md). You can also download the project as described above here: [Project 2](https://github.com/thecmart/BlankApp/tree/Manual2)

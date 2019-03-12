@@ -110,13 +110,13 @@
    ```
   
 10. Now we're going to call the authentication method when the user clicks the button:
-  
+
    ```
    public void login_click (View v) {
       startAuthenticationActivity();
    }
    ```
-  
+
 11. Conceptually two steps are involved with starting the Chat SDK. The first step is to authenticate with Firebase. The second step is for the Chat SDK to connect to Firebase and initialize the messenger. To do this, we can call the `authenticate` method. 
 
    ```
@@ -141,7 +141,7 @@
               });
       }
    ```
-  
+
    This method will be called whenever the `MainActivity` resumes. It will check to see if we're authenticated with Firebase and if so, it will try to connect the Chat SDK to Firebase. If not, the fail block will be called. If it succeeds, it will launch the Chat SDK main activity. 
 
 12. Click on the Gradle Sync button.

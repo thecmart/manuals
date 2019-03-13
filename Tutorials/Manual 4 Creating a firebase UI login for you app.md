@@ -6,7 +6,7 @@
 
 2. Open the `activity_main.xml` file. You do this by going into the folder `app` on the left, then `src`, then `main`, then `res`, then `layout`, and finally click on `activity_main.xml`.
 
-3. Click on the button `Text` in the middle of the screen, then erase all the code you see, and copy the following code into it:
+3. Click on the button `Text` in the middle of the screen, then erase all the code you see, and copy the following code into it. This will create the layout for the button that you can then use for the sign in.
 
    ```
     <?xml version="1.0" encoding="utf-8"?>
@@ -39,7 +39,7 @@
 
 4. Open the folder that says `values`, open the `strings.xml` file and add this to the resources: `<string name="login_button_text">Login With Firebase UI</string>`
 
-5. Add this code in the `import` section of the `MainActivity` class:
+5. Add this code in the `import` section of the `MainActivity` class. These imports will facilitate the firebase UI login.
 
    ```
    import com.firebase.ui.auth.AuthUI;

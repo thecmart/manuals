@@ -1,10 +1,10 @@
 ### Manual 3: Adding Chat SDK to your project
 
-###### This is the third instruction manual in our series. It assumes that you have followed our [Manual 1](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%201%20Creating%20a%20new%20app%20with%20an%20empty%20activity%20and%20AppObj.md) and [Manual 2](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%202%20Linking%20an%20app%20to%20firebase.md), and have create a functioning app, or have a functioning app in any case. 
+###### This is the third instruction manual in our series. It assumes that you have followed our [Manual 1](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%201%20Creating%20a%20new%20app%20with%20an%20empty%20activity%20and%20AppObj.md) and [Manual 2](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%202%20Linking%20an%20app%20to%20firebase.md), and have create a functioning app, or have a functioning app in any case. The corresponding video tutorial to this manual is here: [Tutorial 3 Part 1](https://www.youtube.com/watch?v=UWP7l_rAPgw) [Tutorial 3 Part 2](https://www.youtube.com/watch?v=TldTOCoWLko)
 
 1. Open Android Studio and open your project.
 
-2. Find the section of `repositories` in `allprojects`, and add the following code inside of it:
+2. Find the section of `repositories` in `allprojects`, and add the following code inside of it. this will import the required Chat SDK components.
 
    ```
     maven { url "http://dl.bintray.com/chat-sdk/chat-sdk-android" }
@@ -13,6 +13,7 @@
 3. Add this to the very end of the app level `build.gradle` file in the `dependencies` section:
 
    ```
+    //Required Chat SDK components
     implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.6.0'
     implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.6.0'
     implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.6.0'

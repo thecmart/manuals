@@ -1,6 +1,6 @@
 ### Manual 2: Linking an existing project with Firebase
 
-###### This is the second instruction manual in our series. It assumes that you have followed our Manual 1  and have create a functioning app, or have a functioning app in any case. If not, you can follow the instructions in [Manual 1](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%201%20Creating%20a%20new%20app%20with%20an%20empty%20activity%20and%20AppObj.md)
+###### This is the second instruction manual in our series. It assumes that you have followed our Manual 1  and have create a functioning app, or have a functioning app in any case. If not, you can follow the instructions in [Manual 1](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%201%20Creating%20a%20new%20app%20with%20an%20empty%20activity%20and%20AppObj.md). The link to the corresponding video tutorial ins here: [Tutorial 2](https://www.youtube.com/watch?v=RA-wendcrZw)
 
 1. Open your project in Android Studio. If Android Studio is not connected to Google, click on the Google sign in button located at the top left hand corner and sign in to Google. ![Buttons](https://github.com/thecmart/manuals/blob/master/Images/Buttons2.png)
 
@@ -10,7 +10,7 @@
     classpath 'com.google.gms:google-services:4.2.0'
    ```
 
-      Move your mouse over that line lines slowly, if android studio tells you that the version is outdated, enter the number of the latest version in place of the 4.2.0.
+      Move your mouse over that line lines slowly, if android studio tells you that the version is outdated, enter the number of the latest version in place of the 4.2.0. This line is needed for the firebase plugins to work, as is the next line in step 3.
 
 3. Add this to the very end of the app level `build.gradle` file:
 

@@ -1,6 +1,6 @@
 ### Creating a new empty Project
 
-###### Quick start guide - it takes about 10 minutes! This instruction manual assumes that you are a beginner at using Android Studio and assumes that you want to create a new empty project. If you are an advanced user and want to add Chat SDK to an existing project, please view our manual 3 here: [Manual 3](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%203%20Integrating%20ChatSDK%20into%20the%20new%20project.md)
+###### Quick start guide - it takes about 10 minutes! This instruction manual assumes that you are a beginner at using Android Studio and assumes that you want to create a new empty project. If you are an advanced user and want to add Chat SDK to an existing project, please view our manual 3 here: [Manual 3](https://github.com/thecmart/manuals/blob/master/Tutorials/Manual%203%20Integrating%20ChatSDK%20into%20the%20new%20project.md). The corresponding video to this manual is here: [Tutorial 1](https://www.youtube.com/watch?v=AwhxFx8CXCg)
 
 1. In Android Studio, go to **File** -> **New** -> **Project**.
 
@@ -17,7 +17,7 @@
    maven { url "https://jitpack.io" }
    ```
 
-   The result should look like this:
+   These are links to the necessary libraries for the app to work. The result should look like this:
 
    ```
    allprojects {
@@ -32,7 +32,7 @@
 
 6. Now go to your app level `build.gradle` file. Click on the **app** folder above the `build.gradle` file on the right, and then open the `build.gradle` file in it. The file should have the title "app" when you open it.
 
-7. Find the following lines of code in the `dependencies` section:
+7. There are implementations which are needed for android X to work. Find the following lines of code in the `dependencies` section:
 
    ```
    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
@@ -50,7 +50,7 @@
    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.2-alpha01'
    ```
 
-8. Find the `android {    }` section of the file. Add this code inside of it, but not inside any of the other items inside of it:
+8. Find the `android {    }` section of the file. Add this code inside of it, but not inside any of the other items inside of it. This will make the app more flexible and allow it to run on a larger variety of devices:
 
    ```
    compileOptions {
@@ -88,7 +88,7 @@
    }
    ```
 
-9. Now you need to create a new class. Under the **app** folder on the left, click on **src**, then on "main, and then on **java**. Under **java** there should  be a folder with the package name. Right click on it, then go to **new** and click on **Java Class**. Call the class "AppObject" and under the label Superclass, write "Application". In the body of the class, erase all text **except for the first line.** This would normally be `package PACKAGE NAME;`and copy this code into it:
+9. Now you need to create a new class. Under the **app** folder on the left, click on **src**, then on "main, and then on **java**. Under **java** there should  be a folder with the package name. Right click on it, then go to **new** and click on **Java Class**. Call the class "AppObject" and under the label Superclass, write "Application". In the body of the class, erase all text **except for the first line.** This would normally be `package PACKAGE NAME;`and copy the following code into it. This is basic code for the functioning of the class.
 
    ```
    import android.app.Application;
@@ -104,7 +104,7 @@
 
 10. If you have this class a different name than AppObject, you need to change the name of it in the line `public class AppObject extends Application` to whatever the name of the app is.
 
-11. Open your `AndroidManifest.xml` file, it should be in the "main" folder. Add this code to the `<application` section:
+11. Now you need to declare the existence of this class in the manifest. Open your `AndroidManifest.xml` file, it should be in the "main" folder. Add this code to the `<application` section:
 
     ```
     android:name=".AppObject"

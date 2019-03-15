@@ -14,60 +14,63 @@
 
    ```
     //Required Chat SDK components
-    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.6.0'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.6.0'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.6.0'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.6.0'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.6.0'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-ui:4.6.0'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.6.4'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.6.4'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.6.4'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.6.4'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-ui:4.6.4'
+    implementation 'co.chatsdk.chatsdk:chat-sdk-ui:4.6.4'
    ```
 
 4. Move your mouse over these lines slowly, if android studio tells you that these versions are outdated, enter the number of the latest version in the appropriate line in place of the number of the latest version.
 
 5. Now you need to create a new `Application` class if you do not already have it. Under the **app** folder on the left, click on **src**, then on **main**, and then on **java**. Under **java** there should  be a folder with the package name. Right click on it, then go to **new** and click on **Java Class**. Call the class "AppObject" and under the label `superclass`, write "Application". In the body of the class, erase all text **except for the first line.** This would normally be `package PACKAGE NAME;` 
 
-  First we're going to override the `onCreate` method. To do that, add the following to your class:
+   First we're going to override the `onCreate` method. To do that, add the following to your class:
 
-  ```
-  @Override
-  public void onCreate() {
-     super.onCreate();
+   ```
+    @Override
+    public void onCreate() {
+       super.onCreate();
      
-  }
-  ```
+    }
+   ```
 
-  The `onCreate` method is called when the app first launches and is the best place to setup the Chat SDK. 
+   The `onCreate` method is called when the app first launches and is the best place to setup the Chat SDK. 
 
-  Then add the following code to this method:
+   Then add the following code to this method:
 
-  ```
-  // The Chat SDK needs access to the application's context
-  Context context = getApplicationContext();
-   
-  // Initialize the Chat SDK
-  // Pass in 
-  try {
+   ```
+    // The Chat SDK needs access to the application's context
+    Context context = getApplicationContext();
+    
+    // Initialize the Chat SDK
+    // Pass in 
+    try {
 
-     // The configuration object contains all the Chat SDK settings. If you want to see a full list of the settings
-     // you should look inside the `Configuration` object (CMD+Click it in Android Studio) then you can see every
-     // setting and the accompanying comment
-     Configuration.Builder config = new Configuration.Builder(context);
-   
-     // Perform any configuration steps
-     // The root path is an optional setting that allows you to run multiple Chat SDK instances on one Realtime database. 
-     // For example, you could have one root path for "test" and another for "production"
-     config.firebaseRootPath("prod");
+       // The configuration object contains all the Chat SDK settings. If you want to see a full list of the settings
+       // you should look inside the `Configuration` object (CMD+Click it in Android Studio) then you can see every
+       // setting and the accompanying comment
+       Configuration.Builder config = new Configuration.Builder(context);
+    
+       // Perform any configuration steps
+       // The root path is an optional setting that allows you to run multiple Chat SDK instances on one Realtime database. 
+       // For example, you could have one root path for "test" and another for "production"
+       config.firebaseRootPath("prod");
 
-     // Start the Chat SDK and pass in the interface adapter and network adapter. By subclassing either
-     // of these classes you could modify deep functionality withing the Chat SDK 
-     ChatSDK.initialize(config.build(), new BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
-  }
-     catch (ChatSDKException e) {
-  }
-   
-  // File storage is needed for profile image upload and image messages
-  FirebaseFileStorageModule.activate();
-  ```
+       // Start the Chat SDK and pass in the interface adapter and network adapter. By subclassing either
+       // of these classes you could modify deep functionality withing the Chat SDK 
+       ChatSDK.initialize(config.build(), new BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
+    }
+       catch (ChatSDKException e) {
+    }
+    
+    // File storage is needed for profile image upload and image messages
+    FirebaseFileStorageModule.activate();
+    
+    // Uncomment this to enable Firebase UI
+    // FirebaseUIModule.activate(EmailAuthProvider.PROVIDER_ID, PhoneAuthProvider.PROVIDER_ID);
+   ```
 
 6. If you have not done this already, Open your `AndroidManifest.xml` file, it should be in the "main" folder. Add this code to the `<application` section: `android:name="AppObject"`. If you gave the AppObject class a different name, enter that name instead. This will tell Android which class to load up when the app starts. 
 

@@ -77,7 +77,7 @@
 7. Add the following code to the `AndroidManifest.xml` file to launch Chat SDK upon the starting of the app:
 
    ```
-    <activity android:name="co.chatsdk.ui.login.LoginActivity">
+    <activity android:name="co.chatsdk.ui.login.SplashScreenActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

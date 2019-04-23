@@ -36,7 +36,18 @@
     }
    ```
 
-   The `onCreate` method is called when the app first launches and is the best place to setup the Chat SDK. 
+   The `onCreate` method is called when the app first launches and is the best place to setup the Chat SDK.
+   
+   Import the following:
+   ```
+   import co.chatsdk.core.session.Configuration;
+   import co.chatsdk.firebase.file_storage.FirebaseFileStorageModule;
+   import co.chatsdk.firebase.FirebaseNetworkAdapter;
+   import co.chatsdk.core.error.ChatSDKException;
+   import co.chatsdk.core.session.ChatSDK;
+   import co.chatsdk.ui.manager.BaseInterfaceAdapter;
+   import co.chatsdk.firebase.ui.FirebaseUIModule;
+   ```
 
    Then add the following code to this method:
 
@@ -60,7 +71,7 @@
 
        // Start the Chat SDK and pass in the interface adapter and network adapter. By subclassing either
        // of these classes you could modify deep functionality withing the Chat SDK 
-       ChatSDK.initialize(config.build(), new BaseInterfaceAdapter(context), new FirebaseNetworkAdapter());
+       ChatSDK.initialize(config.build(), new FirebaseNetworkAdapter(), new BaseInterfaceAdapter(context));
     }
        catch (ChatSDKException e) {
     }
